@@ -8,13 +8,15 @@ import {
   takeUntil,
 } from 'rxjs/operators';
 
-export class SaveSubject<
-  RequestType,
-  ResponseType
-> extends Subject<RequestType> {
+export class SaveSubject<RequestType, ResponseType> {
   private readonly _destroy$ = new Subject<boolean>();
 
   private _previousSubject: RequestType;
+
+  private _save$: Subject<RequestType>;
+  get save$(): Subject<RequestType> {
+    return this._save$;
+  }
 
   readonly isSaving$ = new Subject<boolean>();
 
@@ -119,7 +121,13 @@ export class SaveSubject<
     saveDebounceTime: number,
     destroy$?: Subject<boolean>,
   ) {
-    this
+    if (this._save$) {
+      throw new Error('Save subject is already configured.');
+    }
+
+    this._save$ = new Subject<RequestType>();
+
+    this._save$
       .pipe(
         takeUntil(destroy$ ?? this._destroy$),
         debounceTime(saveDebounceTime),

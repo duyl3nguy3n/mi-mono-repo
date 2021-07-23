@@ -54,7 +54,7 @@ class TestComponent implements OnDestroy {
   personDto: PersonDto;
 
   saveDebounceTime = 1000;
-  saveSubject$: SaveSubject<PersonDto, PersonModel>;
+  saveSubject: SaveSubject<PersonDto, PersonModel>;
   personFormGroup: FormGroup;
 
   constructor(
@@ -63,7 +63,7 @@ class TestComponent implements OnDestroy {
   ) {}
 
   setSaveDebounceConfig() {
-    this.saveSubject$ = new SaveSubject<
+    this.saveSubject = new SaveSubject<
       PersonDto,
       PersonModel
     >().setupDebounceConfig(
@@ -75,7 +75,7 @@ class TestComponent implements OnDestroy {
       this.saveDebounceTime,
       this._destroy$,
     );
-    this.saveSubject$.isSaving$
+    this.saveSubject.isSaving$
       .pipe(takeUntil(this._destroy$))
       .subscribe((isSaving) => {
         this.isLoading = isSaving;
@@ -102,10 +102,10 @@ class TestComponent implements OnDestroy {
       }),
       age: this._formBuilder.control(personDto.age),
     });
-    this.saveSubject$.setPreviousSubject(personDto);
+    this.saveSubject.setPreviousSubject(personDto);
     this.personFormGroup.valueChanges
       .pipe(takeUntil(this._destroy$))
-      .subscribe((value) => this.saveSubject$.next(value));
+      .subscribe((value) => this.saveSubject.save$.next(value));
   }
 
   ngOnDestroy() {
