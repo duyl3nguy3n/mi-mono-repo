@@ -6,11 +6,7 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "prettier.singleQuote": true,
-  "cSpell.words": [
-    "endregion",
-    "focusable",
-    "readonly",
-    "tabindex",
-    "uppy"
-  ]
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "cSpell.words": ["endregion", "focusable", "readonly", "tabindex", "uppy"]
 }

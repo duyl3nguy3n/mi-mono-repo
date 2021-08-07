@@ -1,5 +1,4 @@
 {
-  "npmScope": "mi-mono-repo",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": "*",
@@ -7,10 +6,22 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
+  "npmScope": "mi-mono-repo",
   "projects": {
-    "resume": { "tags": ["type:app", "scope:resume"] },
-    "silo-ngx-doc-app": { "tags": ["type:app", "scope:ngx-doc"] },
-    "silo-ngx-lib": { "tags": ["type:lib", "scope:shared"] },
-    "silo-metadata-lib": { "tags": ["type:lib", "scope:shared"] }
+    "resume": {
+      "tags": ["type:app", "scope:resume"]
+    },
+    "silo-ngx-doc-app": {
+      "tags": ["type:app", "scope:ngx-doc"]
+    },
+    "silo-ngx-lib": {
+      "tags": ["type:lib", "scope:shared"]
+    },
+    "silo-metadata-lib": {
+      "tags": ["type:lib", "scope:shared"]
+    },
+    "cms": {
+      "tags": ["type:app", "scope:cms"]
+    }
   }
 }
