@@ -1,7 +1,7 @@
 {
   "hosting": [
     {
-      "target": "silo-ngx-doc-app-prod",
+      "target": "silo-ngx-doc",
       "public": "./dist/apps/silo/ngx-doc-app",
       "predeploy": ["npm run build:silo-ngx-doc-app"],
       "rewrites": [

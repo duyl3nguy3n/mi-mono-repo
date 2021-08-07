@@ -5,8 +5,8 @@
   "targets": {
     "dev-mi-mono-repo": {
       "hosting": {
-        "silo-ngx-doc-app-prod": [
-          "silo-ngx-doc-app-prod"
+        "silo-ngx-doc": [
+          "silo-ngx-doc"
         ]
       }
     }
