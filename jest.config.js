@@ -1,7 +1,8 @@
 module.exports = {
   projects: [
-    '<rootDir>/libs/silo/ngx-lib',
-    '<rootDir>/libs/silo/metadata-lib',
     '<rootDir>/apps/cms',
+    '<rootDir>/libs/silo/domain-lib',
+    '<rootDir>/libs/silo/metadata-lib',
+    '<rootDir>/libs/silo/ngx-lib',
   ],
 };

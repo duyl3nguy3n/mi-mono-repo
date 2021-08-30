@@ -330,6 +330,27 @@
         }
       }
     },
+    "silo-domain-lib": {
+      "root": "libs/silo/domain-lib",
+      "sourceRoot": "libs/silo/domain-lib/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/silo/domain-lib/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/silo/domain-lib"],
+          "options": {
+            "jestConfig": "libs/silo/domain-lib/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "cms": {
       "projectType": "application",
       "root": "apps/cms",

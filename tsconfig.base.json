@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@silo/ngx": ["libs/silo/ngx-lib/src/index.ts"],
-      "@silo/metadata": ["libs/silo/metadata-lib/src/index.ts"]
+      "@silo/metadata": ["libs/silo/metadata-lib/src/index.ts"],
+      "@silo/domain": ["libs/silo/domain-lib/src/index.ts"]
     }
   },
   "angularCompilerOptions": {

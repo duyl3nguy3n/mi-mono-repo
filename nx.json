@@ -8,20 +8,23 @@
   },
   "npmScope": "mi-mono-repo",
   "projects": {
+    "cms": {
+      "tags": ["type:app", "scope:cms"]
+    },
     "resume": {
       "tags": ["type:app", "scope:resume"]
     },
     "silo-ngx-doc-app": {
       "tags": ["type:app", "scope:ngx-doc"]
     },
-    "silo-ngx-lib": {
+    "silo-domain-lib": {
       "tags": ["type:lib", "scope:shared"]
     },
     "silo-metadata-lib": {
       "tags": ["type:lib", "scope:shared"]
     },
-    "cms": {
-      "tags": ["type:app", "scope:cms"]
+    "silo-ngx-lib": {
+      "tags": ["type:lib", "scope:shared"]
     }
   }
 }
