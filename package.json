@@ -17,7 +17,7 @@
     "fb:deploy:silo-ngx-doc-app": "firebase deploy --only hosting:silo-ngx-doc",
     "serve:cms": "ng serve cms",
     "build:cms": "ng build cms",
-    "test": "ng test",
+    "test": "jest --coverage",
     "lint": "nx lint silo-metadata-lib && nx lint silo-ngx-lib",
     "e2e": "ng e2e",
     "affected:apps": "nx affected:apps",

@@ -126,11 +126,8 @@ const setup = async () => {
 
 describe('SaveSubject', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
-  });
-
-  afterEach(() => {
     jest.restoreAllMocks();
+    jest.useFakeTimers('modern');
   });
 
   it('should compile', async () => {
