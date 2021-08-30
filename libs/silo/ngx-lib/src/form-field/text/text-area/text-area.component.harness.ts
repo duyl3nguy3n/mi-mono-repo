@@ -37,9 +37,7 @@ export class TextAreaComponentHarness extends ComponentHarness {
 
   async hasError() {
     const rootElement = await this.getRootElement();
-    const hasError = await rootElement.hasClass(
-      `${TextAreaComponentHarness.hostSelector}--has-error`,
-    );
+    const hasError = await rootElement.hasClass(`silo-form-field--has-error`);
     return hasError;
   }
 }

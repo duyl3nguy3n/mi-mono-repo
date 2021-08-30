@@ -38,9 +38,7 @@ export class SingleSelectComponentHarness extends ComponentHarness {
 
   async hasError() {
     const rootElement = await this.getRootElement();
-    const hasError = await rootElement.hasClass(
-      `${SingleSelectComponentHarness.hostSelector}--has-error`,
-    );
+    const hasError = await rootElement.hasClass(`silo-form-field--has-error`);
     return hasError;
   }
 }
