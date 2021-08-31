@@ -8,5 +8,13 @@
   "prettier.singleQuote": true,
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
-  "cSpell.words": ["endregion", "focusable", "readonly", "tabindex", "uppy"]
+  "cSpell.words": [
+    "Indegree",
+    "Outdegree",
+    "endregion",
+    "focusable",
+    "readonly",
+    "tabindex",
+    "uppy"
+  ]
 }
