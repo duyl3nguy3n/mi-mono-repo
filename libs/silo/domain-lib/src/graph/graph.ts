@@ -71,6 +71,28 @@ export class Graph<T = unknown> {
   }
 
   /**
+   * Set the node value for specify node key
+   */
+  setNodeValue(nodeKey: string, nodeValue: T): void {
+    if (!this._nodes.has(nodeKey)) {
+      throw new NoRecordFoundError(nodeKey);
+    }
+
+    this._nodes.set(nodeKey, nodeValue);
+  }
+
+  /**
+   * Get the node value for specify node key
+   */
+  getNodeValue(nodeKey: string): T {
+    if (!this._nodes.has(nodeKey)) {
+      throw new NoRecordFoundError(nodeKey);
+    }
+
+    return this._nodes.get(nodeKey);
+  }
+
+  /**
    * Finds all adjacent nodes for given node key
    */
   findAdjacentNodes(nodeKey: string): Array<GraphNode> {
@@ -127,21 +149,21 @@ export class Graph<T = unknown> {
   /**
    * Removes the edge between 2 given nodes
    */
-  removeEdge(startNodeKey: string, endNodeKey: string) {
+  removeEdge(startNodeKey: string, endNodeKey: string): void {
     throw new NotImplementError();
   }
 
   /**
    * Sets the weight of given edge
    */
-  setEdgeWeight(startNodeKey: string, endNodeKey: string, weight = 0) {
+  setEdgeWeight(startNodeKey: string, endNodeKey: string, weight = 0): void {
     throw new NotImplementError();
   }
 
   /**
    * Gets the weight of given edge
    */
-  getEdgeWeight(startNodeKey: string, endNodeKey: string, weight = 0) {
+  getEdgeWeight(startNodeKey: string, endNodeKey: string, weight = 0): number {
     throw new NotImplementError();
   }
 }

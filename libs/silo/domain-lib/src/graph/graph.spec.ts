@@ -13,16 +13,19 @@ describe('Graph', () => {
   });
 
   it('addNode() should add node with unique key', () => {
+    // arrange
     graph.addNode('a', 1);
     // throw error if key is not unique
     expect(() => graph.addNode('a', 2)).toThrowError();
     // assert
     const nodeA = graph.findNode('a');
+    expect(nodeA).toBeTruthy();
     expect(nodeA.key).toBe('a');
     expect(nodeA.value).toBe(1);
   });
 
   it('findNode() should find node with unique key', () => {
+    // arrange
     graph.addNode('a', 1);
     const nodeA = graph.findNode('a');
     // return undefined if key does not exist
@@ -34,6 +37,7 @@ describe('Graph', () => {
   });
 
   it('removeNode() should remove node and all of its edges', () => {
+    // arrange
     graph.addNode('a', 1);
     graph.addNode('b', 2);
     graph.addNode('c', 3);
@@ -51,7 +55,28 @@ describe('Graph', () => {
     expect(graph.hasEdge('b', 'c')).toBeFalsy();
   });
 
+  it('setNodeValue() should set the node with new value', () => {
+    // arrange
+    graph.addNode('a', 1);
+    expect(graph.getNodeValue('a')).toBe(1);
+    graph.setNodeValue('a', 2);
+    // throw error if node doesn't exist
+    expect(() => graph.setNodeValue('b', 2)).toThrowError();
+    // assert
+    expect(graph.getNodeValue('a')).toBe(2);
+  });
+
+  it('getNodeValue() should get the node value for specify node key', () => {
+    // arrange
+    graph.addNode('a', 1);
+    // throw error if node doesn't exist
+    expect(() => graph.getNodeValue('b')).toThrowError();
+    // assert
+    expect(graph.getNodeValue('a')).toBe(1);
+  });
+
   it('addEdge() should add edge between 2 nodes ', () => {
+    // arrange
     graph.addNode('a', 1);
     graph.addNode('b', 2);
     graph.addEdge('a', 'b', 5);
@@ -63,6 +88,7 @@ describe('Graph', () => {
   });
 
   it('hasEdge() should return true if 2 nodes has edge', () => {
+    // arrange
     graph.addNode('a', 1);
     graph.addNode('b', 2);
     graph.addEdge('a', 'b', 5);
