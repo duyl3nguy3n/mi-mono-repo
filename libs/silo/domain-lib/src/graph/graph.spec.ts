@@ -33,6 +33,24 @@ describe('Graph', () => {
     expect(nodeA.value).toBe(1);
   });
 
+  it('removeNode() should remove node and all of its edges', () => {
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addNode('c', 3);
+    graph.addEdge('a', 'b');
+    graph.addEdge('b', 'c');
+    expect(graph.findNode('b')).toBeTruthy();
+    expect(graph.hasEdge('a', 'b')).toBeTruthy();
+    expect(graph.hasEdge('b', 'c')).toBeTruthy();
+    graph.removeNode('b');
+    // throw error if node doesn't exist
+    expect(() => graph.removeNode('d')).toThrowError();
+    // assert
+    expect(graph.findNode('b')).toBeUndefined();
+    expect(graph.hasEdge('a', 'b')).toBeFalsy();
+    expect(graph.hasEdge('b', 'c')).toBeFalsy();
+  });
+
   it('addEdge() should add edge between 2 nodes ', () => {
     graph.addNode('a', 1);
     graph.addNode('b', 2);

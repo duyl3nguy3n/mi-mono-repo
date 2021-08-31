@@ -59,6 +59,15 @@ export class Graph<T = unknown> {
     if (!this._nodes.has(nodeKey)) {
       throw new NoRecordFoundError(nodeKey);
     }
+
+    this._nodes.delete(nodeKey);
+    for (let edge of this._edges.values()) {
+      if (edge.startNodeKey === nodeKey || edge.endNodeKey === nodeKey) {
+        this._edges.delete(
+          JSON.stringify([edge.startNodeKey, edge.endNodeKey]),
+        );
+      }
+    }
   }
 
   /**
