@@ -1,6 +1,5 @@
 import { DuplicatedRecordError } from '../errors/duplicated-record-error';
 import { NoRecordFoundError } from '../errors/no-record-found-error';
-import { NotImplementError } from '../errors/not-implement-error';
 
 export interface GraphNode<T = unknown> {
   key: string;
@@ -28,7 +27,7 @@ export class Graph<T = unknown> {
   }
 
   /**
-   * Adds a new node with the specify key and value
+   * Adds a new node with the specified key and value
    */
   addNode(nodeKey: string, nodeValue: T): void {
     if (this._nodes.has(nodeKey)) {
@@ -39,7 +38,7 @@ export class Graph<T = unknown> {
   }
 
   /**
-   * Gets node with specify key
+   * Gets node with specified key
    */
   getNode(nodeKey: string): GraphNode<T> {
     if (!this._nodes.has(nodeKey)) {
@@ -53,7 +52,7 @@ export class Graph<T = unknown> {
   }
 
   /**
-   * Finds node with specify key
+   * Finds node with specified key
    */
   findNode(nodeKey: string): GraphNode<T> | undefined {
     if (!this._nodes.has(nodeKey)) {
@@ -67,7 +66,7 @@ export class Graph<T = unknown> {
   }
 
   /**
-   * Removes node with specify key
+   * Removes node with specified key
    */
   removeNode(nodeKey: string): void {
     if (!this._nodes.has(nodeKey)) {
@@ -83,7 +82,7 @@ export class Graph<T = unknown> {
   }
 
   /**
-   * Set the node value for specify node key
+   * Set the node value for specified node key
    */
   setNodeValue(nodeKey: string, nodeValue: T): void {
     if (!this._nodes.has(nodeKey)) {
@@ -94,7 +93,7 @@ export class Graph<T = unknown> {
   }
 
   /**
-   * Get the node value for specify node key
+   * Get the node value for specified node key
    */
   getNodeValue(nodeKey: string): T {
     if (!this._nodes.has(nodeKey)) {
@@ -160,23 +159,9 @@ export class Graph<T = unknown> {
    * Adds an edge between 2 given nodes, optionally setting its weight
    */
   addEdge(startNodeKey: string, endNodeKey: string, weight = 0): void {
-    const edgeKey = JSON.stringify([startNodeKey, endNodeKey]);
-    if (this._edges.has(edgeKey)) {
-      throw new DuplicatedRecordError(edgeKey);
-    }
-
-    this._edges.set(edgeKey, {
-      startNodeKey,
-      endNodeKey,
-      weight,
-    });
-
+    this._addEdge(startNodeKey, endNodeKey, weight);
     if (!this._isDirected) {
-      this._edges.set(JSON.stringify([endNodeKey, startNodeKey]), {
-        startNodeKey: endNodeKey,
-        endNodeKey: startNodeKey,
-        weight,
-      });
+      this._addEdge(endNodeKey, startNodeKey, weight);
     }
   }
 
@@ -198,16 +183,52 @@ export class Graph<T = unknown> {
   }
 
   /**
-   * Sets the weight of given edge
+   * Gets the weight of given edge
    */
-  setEdgeWeight(startNodeKey: string, endNodeKey: string, weight = 0): void {
-    throw new NotImplementError();
+  getEdgeWeight(startNodeKey: string, endNodeKey: string): number {
+    const edgeKey = JSON.stringify([startNodeKey, endNodeKey]);
+    if (!this._edges.has(edgeKey)) {
+      throw new NoRecordFoundError(edgeKey);
+    }
+
+    return this._edges.get(edgeKey).weight;
   }
 
   /**
-   * Gets the weight of given edge
+   * Sets the weight of given edge
    */
-  getEdgeWeight(startNodeKey: string, endNodeKey: string, weight = 0): number {
-    throw new NotImplementError();
+  setEdgeWeight(
+    startNodeKey: string,
+    endNodeKey: string,
+    weight: number,
+  ): void {
+    this._setEdge(startNodeKey, endNodeKey, weight);
+    if (!this._isDirected) {
+      this._setEdge(endNodeKey, startNodeKey, weight);
+    }
+  }
+
+  /**
+   * Adds edge and its weight between 2 given nodes if it does not exist
+   */
+  private _addEdge(startNodeKey: string, endNodeKey: string, weight: number) {
+    const edgeKey = JSON.stringify([startNodeKey, endNodeKey]);
+    if (this._edges.has(edgeKey)) {
+      throw new DuplicatedRecordError(edgeKey);
+    }
+
+    this._edges.set(edgeKey, { startNodeKey, endNodeKey, weight });
+  }
+
+  /**
+   * Sets edge and its weight between 2 given nodes if it exists
+   */
+  private _setEdge(startNodeKey: string, endNodeKey: string, weight: number) {
+    const edgeKey = JSON.stringify([startNodeKey, endNodeKey]);
+    if (!this._edges.has(edgeKey)) {
+      throw new NoRecordFoundError(edgeKey);
+    }
+
+    this._edges.set(edgeKey, { startNodeKey, endNodeKey, weight });
   }
 }

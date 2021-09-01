@@ -78,7 +78,7 @@ describe('Graph', () => {
     expect(graph.getNodeValue('a')).toBe(2);
   });
 
-  it('getNodeValue() should get the node value for specify node key', () => {
+  it('getNodeValue() should get the node value for specified node key', () => {
     // arrange
     graph.addNode('a', 1);
     // throw error if node doesn't exist
@@ -103,7 +103,7 @@ describe('Graph', () => {
     expect(adjacents.find((x) => x.key === 'c')).toBeTruthy();
   });
 
-  it('getNodeIndegree() should return indegree for specify node key', () => {
+  it('getNodeIndegree() should return indegree for specified node key', () => {
     // arrange
     graph.addNode('a', 1);
     graph.addNode('b', 2);
@@ -118,7 +118,7 @@ describe('Graph', () => {
     expect(graph.getNodeIndegree('c')).toBe(1);
   });
 
-  it('getNodeOutdegree() should return indegree for specify node key', () => {
+  it('getNodeOutdegree() should return indegree for specified node key', () => {
     // arrange
     graph.addNode('a', 1);
     graph.addNode('b', 2);
@@ -171,5 +171,29 @@ describe('Graph', () => {
     // assert
     expect(graph.hasEdge('a', 'b')).toBeFalsy();
     expect(graph.hasEdge('b', 'a')).toBeFalsy();
+  });
+
+  it('getEdgeWeight() should return the weight of specified edge', () => {
+    // arrange
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addEdge('a', 'b', 5);
+    // throw error if edge does not exist
+    expect(() => graph.getEdgeWeight('a', 'c')).toThrowError();
+    // assert
+    expect(graph.getEdgeWeight('a', 'b')).toBe(5);
+  });
+
+  it('setEdgeWeight() should set the weight for specified edge', () => {
+    // arrange
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addEdge('a', 'b', 5);
+    expect(graph.getEdgeWeight('a', 'b')).toBe(5);
+    graph.setEdgeWeight('a', 'b', 10);
+    // throw error if edge does not exist
+    expect(() => graph.setEdgeWeight('a', 'c', 10)).toThrowError();
+    // assert
+    expect(graph.getEdgeWeight('a', 'b')).toBe(10);
   });
 });
