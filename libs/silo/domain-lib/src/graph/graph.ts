@@ -122,18 +122,34 @@ export class Graph<T = unknown> {
 
   /**
    * Gets total number of edges that go into a given node key
-   * @param nodeKey Get
    */
   getNodeIndegree(nodeKey: string): number {
-    throw new NotImplementError();
+    if (!this._nodes.has(nodeKey)) {
+      throw new NoRecordFoundError(nodeKey);
+    }
+
+    return [...this._edges.values()].reduce((indegree, { endNodeKey }) => {
+      if (endNodeKey === nodeKey) {
+        indegree += 1;
+      }
+      return indegree;
+    }, 0);
   }
 
   /**
    * Gets total number of edges that go out from given node key
-   * @param nodeKey Get
    */
   getNodeOutdegree(nodeKey: string): number {
-    throw new NotImplementError();
+    if (!this._nodes.has(nodeKey)) {
+      throw new NoRecordFoundError(nodeKey);
+    }
+
+    return [...this._edges.values()].reduce((outdegree, { startNodeKey }) => {
+      if (startNodeKey === nodeKey) {
+        outdegree += 1;
+      }
+      return outdegree;
+    }, 0);
   }
 
   /**

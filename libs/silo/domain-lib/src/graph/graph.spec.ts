@@ -101,6 +101,36 @@ describe('Graph', () => {
     expect(adjacents.find((x) => x.key === 'c')).toBeTruthy();
   });
 
+  it('getNodeIndegree() should return indegree for specify node key', () => {
+    // arrange
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addNode('c', 3);
+    graph.addEdge('a', 'b');
+    graph.addEdge('b', 'c');
+    // throw error if node doesn't exist
+    expect(() => graph.getNodeIndegree('d')).toThrowError();
+    // assert
+    expect(graph.getNodeIndegree('a')).toBe(1);
+    expect(graph.getNodeIndegree('b')).toBe(2);
+    expect(graph.getNodeIndegree('c')).toBe(1);
+  });
+
+  it('getNodeOutdegree() should return indegree for specify node key', () => {
+    // arrange
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addNode('c', 3);
+    graph.addEdge('a', 'b');
+    graph.addEdge('b', 'c');
+    // throw error if node doesn't exist
+    expect(() => graph.getNodeOutdegree('d')).toThrowError();
+    // assert
+    expect(graph.getNodeOutdegree('a')).toBe(1);
+    expect(graph.getNodeOutdegree('b')).toBe(2);
+    expect(graph.getNodeOutdegree('c')).toBe(1);
+  });
+
   it('addEdge() should add edge between 2 nodes ', () => {
     // arrange
     graph.addNode('a', 1);
