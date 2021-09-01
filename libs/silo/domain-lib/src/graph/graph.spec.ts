@@ -87,15 +87,17 @@ describe('Graph', () => {
     expect(graph.getNodeValue('a')).toBe(1);
   });
 
-  it('findAdjacentNodes() should return all adjacent nodes', () => {
+  it('getAdjacentNodes() should return all adjacent nodes', () => {
     // arrange
     graph.addNode('a', 1);
     graph.addNode('b', 2);
     graph.addNode('c', 3);
     graph.addEdge('a', 'b');
     graph.addEdge('b', 'c');
+    // throw error if node doesn't exist
+    expect(() => graph.getAdjacentNodes('d')).toThrowError();
     // assert
-    const adjacents = graph.findAdjacentNodes('b');
+    const adjacents = graph.getAdjacentNodes('b');
     expect(adjacents.length).toBe(2);
     expect(adjacents.find((x) => x.key === 'a')).toBeTruthy();
     expect(adjacents.find((x) => x.key === 'c')).toBeTruthy();
@@ -135,9 +137,9 @@ describe('Graph', () => {
     // arrange
     graph.addNode('a', 1);
     graph.addNode('b', 2);
-    graph.addEdge('a', 'b', 5);
+    graph.addEdge('a', 'b');
     // throw error if edge already exist
-    expect(() => graph.addEdge('a', 'b', 10)).toThrowError();
+    expect(() => graph.addEdge('a', 'b')).toThrowError();
     // assert
     expect(graph.hasEdge('a', 'b')).toBeTruthy();
     expect(graph.hasEdge('b', 'a')).toBeTruthy();
@@ -147,11 +149,27 @@ describe('Graph', () => {
     // arrange
     graph.addNode('a', 1);
     graph.addNode('b', 2);
-    graph.addEdge('a', 'b', 5);
+    graph.addNode('c', 3);
+    graph.addEdge('a', 'b');
     // return false if 2 nodes doesn't have edge
     expect(graph.hasEdge('a', 'c')).toBeFalsy();
     // assert
     expect(graph.hasEdge('a', 'b')).toBeTruthy();
     expect(graph.hasEdge('b', 'a')).toBeTruthy();
+  });
+
+  it('removeEdge() should remove edge between 2 given nodes', () => {
+    // arrange
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addNode('c', 3);
+    graph.addEdge('a', 'b');
+    graph.addEdge('b', 'c');
+    expect(graph.hasEdge('a', 'b')).toBeTruthy();
+    expect(graph.hasEdge('b', 'a')).toBeTruthy();
+    graph.removeEdge('a', 'b');
+    // assert
+    expect(graph.hasEdge('a', 'b')).toBeFalsy();
+    expect(graph.hasEdge('b', 'a')).toBeFalsy();
   });
 });

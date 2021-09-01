@@ -105,9 +105,13 @@ export class Graph<T = unknown> {
   }
 
   /**
-   * Finds all adjacent nodes for given node key
+   * Gets all adjacent nodes for given node key
    */
-  findAdjacentNodes(nodeKey: string): Array<GraphNode<T>> {
+  getAdjacentNodes(nodeKey: string): Array<GraphNode<T>> {
+    if (!this._nodes.has(nodeKey)) {
+      throw new NoRecordFoundError(nodeKey);
+    }
+
     return [...this._edges.values()].reduce(
       (adjacents, { startNodeKey, endNodeKey }) => {
         if (startNodeKey === nodeKey) {
@@ -187,7 +191,10 @@ export class Graph<T = unknown> {
    * Removes the edge between 2 given nodes
    */
   removeEdge(startNodeKey: string, endNodeKey: string): void {
-    throw new NotImplementError();
+    this._edges.delete(JSON.stringify([startNodeKey, endNodeKey]));
+    if (!this._isDirected) {
+      this._edges.delete(JSON.stringify([endNodeKey, startNodeKey]));
+    }
   }
 
   /**
