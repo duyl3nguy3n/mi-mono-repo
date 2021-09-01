@@ -55,6 +55,7 @@ describe('Graph', () => {
     graph.addNode('c', 3);
     graph.addEdge('a', 'b');
     graph.addEdge('b', 'c');
+    graph.addEdge('a', 'c');
     expect(graph.findNode('b')).toBeTruthy();
     expect(graph.hasEdge('a', 'b')).toBeTruthy();
     expect(graph.hasEdge('b', 'c')).toBeTruthy();
