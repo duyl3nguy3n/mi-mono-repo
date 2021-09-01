@@ -1,0 +1,200 @@
+import { Graph } from './graph';
+
+describe('Graph', () => {
+  let graph: Graph<number>;
+
+  beforeEach(() => {
+    graph = new Graph<number>();
+  });
+
+  it('should create graph', () => {
+    expect(graph).toBeTruthy();
+    expect(graph.isDirected).toBeFalsy();
+  });
+
+  it('addNode() should add node with unique key', () => {
+    // arrange
+    graph.addNode('a', 1);
+    // throw error if key is not unique
+    expect(() => graph.addNode('a', 2)).toThrowError();
+    // assert
+    const nodeA = graph.findNode('a');
+    expect(nodeA).toBeTruthy();
+    expect(nodeA.key).toBe('a');
+    expect(nodeA.value).toBe(1);
+  });
+
+  it('getNode() should find node with unique key', () => {
+    // arrange
+    graph.addNode('a', 1);
+    const nodeA = graph.getNode('a');
+    // throw error if key does not exist
+    expect(() => graph.getNode('b')).toThrowError();
+    // assert
+    expect(nodeA).toBeTruthy();
+    expect(nodeA.key).toBe('a');
+    expect(nodeA.value).toBe(1);
+  });
+
+  it('findNode() should find node with unique key', () => {
+    // arrange
+    graph.addNode('a', 1);
+    const nodeA = graph.findNode('a');
+    // return undefined if key does not exist
+    expect(graph.findNode('b')).toBeUndefined();
+    // assert
+    expect(nodeA).toBeTruthy();
+    expect(nodeA.key).toBe('a');
+    expect(nodeA.value).toBe(1);
+  });
+
+  it('removeNode() should remove node and all of its edges', () => {
+    // arrange
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addNode('c', 3);
+    graph.addEdge('a', 'b');
+    graph.addEdge('b', 'c');
+    graph.addEdge('a', 'c');
+    expect(graph.findNode('b')).toBeTruthy();
+    expect(graph.hasEdge('a', 'b')).toBeTruthy();
+    expect(graph.hasEdge('b', 'c')).toBeTruthy();
+    graph.removeNode('b');
+    // throw error if node doesn't exist
+    expect(() => graph.removeNode('d')).toThrowError();
+    // assert
+    expect(graph.findNode('b')).toBeUndefined();
+    expect(graph.hasEdge('a', 'b')).toBeFalsy();
+    expect(graph.hasEdge('b', 'c')).toBeFalsy();
+  });
+
+  it('setNodeValue() should set the node with new value', () => {
+    // arrange
+    graph.addNode('a', 1);
+    expect(graph.getNodeValue('a')).toBe(1);
+    graph.setNodeValue('a', 2);
+    // throw error if node doesn't exist
+    expect(() => graph.setNodeValue('b', 2)).toThrowError();
+    // assert
+    expect(graph.getNodeValue('a')).toBe(2);
+  });
+
+  it('getNodeValue() should get the node value for specified node key', () => {
+    // arrange
+    graph.addNode('a', 1);
+    // throw error if node doesn't exist
+    expect(() => graph.getNodeValue('b')).toThrowError();
+    // assert
+    expect(graph.getNodeValue('a')).toBe(1);
+  });
+
+  it('getAdjacentNodes() should return all adjacent nodes', () => {
+    // arrange
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addNode('c', 3);
+    graph.addEdge('a', 'b');
+    graph.addEdge('b', 'c');
+    // throw error if node doesn't exist
+    expect(() => graph.getAdjacentNodes('d')).toThrowError();
+    // assert
+    const adjacents = graph.getAdjacentNodes('b');
+    expect(adjacents.length).toBe(2);
+    expect(adjacents.find((x) => x.key === 'a')).toBeTruthy();
+    expect(adjacents.find((x) => x.key === 'c')).toBeTruthy();
+  });
+
+  it('getNodeIndegree() should return indegree for specified node key', () => {
+    // arrange
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addNode('c', 3);
+    graph.addEdge('a', 'b');
+    graph.addEdge('b', 'c');
+    // throw error if node doesn't exist
+    expect(() => graph.getNodeIndegree('d')).toThrowError();
+    // assert
+    expect(graph.getNodeIndegree('a')).toBe(1);
+    expect(graph.getNodeIndegree('b')).toBe(2);
+    expect(graph.getNodeIndegree('c')).toBe(1);
+  });
+
+  it('getNodeOutdegree() should return indegree for specified node key', () => {
+    // arrange
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addNode('c', 3);
+    graph.addEdge('a', 'b');
+    graph.addEdge('b', 'c');
+    // throw error if node doesn't exist
+    expect(() => graph.getNodeOutdegree('d')).toThrowError();
+    // assert
+    expect(graph.getNodeOutdegree('a')).toBe(1);
+    expect(graph.getNodeOutdegree('b')).toBe(2);
+    expect(graph.getNodeOutdegree('c')).toBe(1);
+  });
+
+  it('addEdge() should add edge between 2 nodes ', () => {
+    // arrange
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addEdge('a', 'b');
+    // throw error if edge already exist
+    expect(() => graph.addEdge('a', 'b')).toThrowError();
+    // assert
+    expect(graph.hasEdge('a', 'b')).toBeTruthy();
+    expect(graph.hasEdge('b', 'a')).toBeTruthy();
+  });
+
+  it('hasEdge() should return true if 2 nodes has edge', () => {
+    // arrange
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addNode('c', 3);
+    graph.addEdge('a', 'b');
+    // return false if 2 nodes doesn't have edge
+    expect(graph.hasEdge('a', 'c')).toBeFalsy();
+    // assert
+    expect(graph.hasEdge('a', 'b')).toBeTruthy();
+    expect(graph.hasEdge('b', 'a')).toBeTruthy();
+  });
+
+  it('removeEdge() should remove edge between 2 given nodes', () => {
+    // arrange
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addNode('c', 3);
+    graph.addEdge('a', 'b');
+    graph.addEdge('b', 'c');
+    expect(graph.hasEdge('a', 'b')).toBeTruthy();
+    expect(graph.hasEdge('b', 'a')).toBeTruthy();
+    graph.removeEdge('a', 'b');
+    // assert
+    expect(graph.hasEdge('a', 'b')).toBeFalsy();
+    expect(graph.hasEdge('b', 'a')).toBeFalsy();
+  });
+
+  it('getEdgeWeight() should return the weight of specified edge', () => {
+    // arrange
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addEdge('a', 'b', 5);
+    // throw error if edge does not exist
+    expect(() => graph.getEdgeWeight('a', 'c')).toThrowError();
+    // assert
+    expect(graph.getEdgeWeight('a', 'b')).toBe(5);
+  });
+
+  it('setEdgeWeight() should set the weight for specified edge', () => {
+    // arrange
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addEdge('a', 'b', 5);
+    expect(graph.getEdgeWeight('a', 'b')).toBe(5);
+    graph.setEdgeWeight('a', 'b', 10);
+    // throw error if edge does not exist
+    expect(() => graph.setEdgeWeight('a', 'c', 10)).toThrowError();
+    // assert
+    expect(graph.getEdgeWeight('a', 'b')).toBe(10);
+  });
+});
