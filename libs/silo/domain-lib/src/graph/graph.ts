@@ -39,9 +39,23 @@ export class Graph<T = unknown> {
   }
 
   /**
+   * Gets node with specify key
+   */
+  getNode(nodeKey: string): GraphNode<T> {
+    if (!this._nodes.has(nodeKey)) {
+      throw new NoRecordFoundError(nodeKey);
+    }
+
+    return {
+      key: nodeKey,
+      value: this._nodes.get(nodeKey),
+    };
+  }
+
+  /**
    * Finds node with specify key
    */
-  findNode(nodeKey: string): GraphNode | undefined {
+  findNode(nodeKey: string): GraphNode<T> | undefined {
     if (!this._nodes.has(nodeKey)) {
       return undefined;
     }
@@ -61,11 +75,9 @@ export class Graph<T = unknown> {
     }
 
     this._nodes.delete(nodeKey);
-    for (let edge of this._edges.values()) {
-      if (edge.startNodeKey === nodeKey || edge.endNodeKey === nodeKey) {
-        this._edges.delete(
-          JSON.stringify([edge.startNodeKey, edge.endNodeKey]),
-        );
+    for (let { startNodeKey, endNodeKey } of this._edges.values()) {
+      if (startNodeKey === nodeKey || endNodeKey === nodeKey) {
+        this._edges.delete(JSON.stringify([startNodeKey, endNodeKey]));
       }
     }
   }
@@ -95,8 +107,17 @@ export class Graph<T = unknown> {
   /**
    * Finds all adjacent nodes for given node key
    */
-  findAdjacentNodes(nodeKey: string): Array<GraphNode> {
-    throw new NotImplementError();
+  findAdjacentNodes(nodeKey: string): Array<GraphNode<T>> {
+    return [...this._edges.values()].reduce(
+      (adjacents, { startNodeKey, endNodeKey }) => {
+        if (startNodeKey === nodeKey) {
+          adjacents.push(this.getNode(endNodeKey));
+        }
+
+        return adjacents;
+      },
+      [],
+    );
   }
 
   /**

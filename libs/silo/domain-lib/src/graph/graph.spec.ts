@@ -24,6 +24,18 @@ describe('Graph', () => {
     expect(nodeA.value).toBe(1);
   });
 
+  it('getNode() should find node with unique key', () => {
+    // arrange
+    graph.addNode('a', 1);
+    const nodeA = graph.getNode('a');
+    // throw error if key does not exist
+    expect(() => graph.getNode('b')).toThrowError();
+    // assert
+    expect(nodeA).toBeTruthy();
+    expect(nodeA.key).toBe('a');
+    expect(nodeA.value).toBe(1);
+  });
+
   it('findNode() should find node with unique key', () => {
     // arrange
     graph.addNode('a', 1);
@@ -73,6 +85,20 @@ describe('Graph', () => {
     expect(() => graph.getNodeValue('b')).toThrowError();
     // assert
     expect(graph.getNodeValue('a')).toBe(1);
+  });
+
+  it('findAdjacentNodes() should return all adjacent nodes', () => {
+    // arrange
+    graph.addNode('a', 1);
+    graph.addNode('b', 2);
+    graph.addNode('c', 3);
+    graph.addEdge('a', 'b');
+    graph.addEdge('b', 'c');
+    // assert
+    const adjacents = graph.findAdjacentNodes('b');
+    expect(adjacents.length).toBe(2);
+    expect(adjacents.find((x) => x.key === 'a')).toBeTruthy();
+    expect(adjacents.find((x) => x.key === 'c')).toBeTruthy();
   });
 
   it('addEdge() should add edge between 2 nodes ', () => {
