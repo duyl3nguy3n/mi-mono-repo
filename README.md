@@ -4,22 +4,22 @@
 
 - Install [nvm-windows](https://github.com/coreybutler/nvm-windows) so we can install and use multiple [NodeJs](https://nodejs.org/en/) versions
 
-- Install latest NodeJs version
+- Install workspace NodeJs
 
 ```npm
-nvm install latest
-nvm use latest
+nvm install 14.17.6
+nvm use 14.17.6
 ```
 
-- Install CLI
+- Install workspace CLI
 
 ```npm
-npm install -g @nrwl/cli@11.2.1
-npm install -g @angular/cli@11.3.0
-npm install -g firebase-tools
+npm install -g @nrwl/cli@12.8.0
+npm install -g @angular/cli@12.2.4
+npm install -g firebase-tools@9.17.0
 ```
 
-- Setup firebase
+- Setup firebase for deployment
 
 ```firebase
 firebase login        # Sign into Firebase using Google account
