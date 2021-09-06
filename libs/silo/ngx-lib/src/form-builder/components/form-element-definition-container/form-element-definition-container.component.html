@@ -19,14 +19,18 @@
         fxLayout="row"
         fxLayoutAlign="end center"
       >
-        <mat-icon matTooltip="Edit form element">edit</mat-icon>
-        <div
-          @render
-          *ngIf="
-            nodeModel.state.isActive &&
-            nodeModel.definitionModel.templateIdentifier !== 'FormGroup'
-          "
-        >
+        <div *ngIf="!nodeModel.state.isActive">
+          <button
+            mat-icon-button
+            [color]="nodeModel.state.isActive ? 'primary' : undefined"
+            aria-label="Edit form element"
+            matTooltip="Edit form element"
+            (click)="setActiveNode($event)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+        <div @render *ngIf="nodeModel.state.isActive">
           <!-- TODO: Implement move feature -->
           <!-- <button
             mat-icon-button
@@ -44,11 +48,12 @@
           </button> -->
           <button
             mat-icon-button
+            [color]="nodeModel.state.isActive ? 'primary' : undefined"
             aria-label="Remove form element"
             matTooltip="Remove form element"
             (click)="removeElement(nodeModel)"
           >
-            <mat-icon>delete</mat-icon>
+            <mat-icon>cancel</mat-icon>
           </button>
         </div>
       </div>

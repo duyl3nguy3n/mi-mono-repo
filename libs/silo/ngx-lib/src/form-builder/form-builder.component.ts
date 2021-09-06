@@ -33,7 +33,7 @@ export class FormBuilderComponent implements OnInit {
 
   lastActiveDefinitionKey$ = new BehaviorSubject<string>('');
 
-  activeNodeModel!: FormElementNodeModel;
+  activeNodeModel: FormElementNodeModel | null = null;
 
   addMenuItemList: Array<FormAddMenuItemModel> = [];
 
@@ -61,7 +61,6 @@ export class FormBuilderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.setAddMenuItemList();
     this.render(this.formDefinitionModel, this.memberKeyList);
   }
 
@@ -69,6 +68,7 @@ export class FormBuilderComponent implements OnInit {
     formDefinitionModel: FormDefinitionModel,
     memberKeyList: Array<string>,
   ) {
+    this.setAddMenuItemList();
     this.formDefinitionModel = formDefinitionModel;
     this.memberKeyList = memberKeyList;
     this.nodeModelList = memberKeyList.map((memberKey) =>
@@ -85,6 +85,12 @@ export class FormBuilderComponent implements OnInit {
 
   setAddMenuItemList() {
     this.addMenuItemList = this._formBuilderRegistryService.getAddMenuItemList();
+    // when there is no root, can only add form group
+    if (!this.formDefinitionModel?.rootMemberKey) {
+      this.addMenuItemList = this.addMenuItemList.filter(
+        (x) => x.templateIdentifier === 'FormGroup',
+      );
+    }
   }
 
   setActiveNode(nodeModel: FormElementNodeModel) {
@@ -96,22 +102,40 @@ export class FormBuilderComponent implements OnInit {
     this.lastActiveDefinitionKey$.next(nodeModel.definitionKey);
   }
 
+  removeActiveNode(): void {
+    if (this.activeNodeModel) {
+      this.activeNodeModel.state.isActive = false;
+    } else {
+      return;
+    }
+    this.activeNodeModel = null;
+    this.lastActiveDefinitionKey$.next('');
+  }
+
   addElement(item: FormAddMenuItemModel) {
     const event = new AddFormElementEvent();
     event.templateIdentifier = item.templateIdentifier;
     event.templateDisplayName = item.templateDisplayName;
-    // if active node data type is not Object, add as a child to parent
-    // else, add as child to active node
-    event.parentMemberKey =
-      this.activeNodeModel.definitionModel.dataType != 'Object'
-        ? this.activeNodeModel.parentMemberKey
-        : this.activeNodeModel.memberKey;
+    if (this.activeNodeModel) {
+      // if active node data type is not Object, add as a child to parent
+      // else, add as child to active node
+      event.parentMemberKey =
+        this.activeNodeModel.definitionModel.dataType != 'Object'
+          ? this.activeNodeModel.parentMemberKey
+          : this.activeNodeModel.memberKey;
+    }
     this.handleEvent.next(event);
   }
 
   removeElement(nodeModel: FormElementNodeModel): void {
     const event = new RemoveFormElementEvent();
     event.memberKey = nodeModel.memberKey;
+    if (
+      this.activeNodeModel &&
+      this.activeNodeModel.memberKey === nodeModel.memberKey
+    ) {
+      this.removeActiveNode();
+    }
     this.handleEvent.next(event);
   }
 

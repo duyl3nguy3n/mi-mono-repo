@@ -30,13 +30,19 @@ export class FormBuilderService {
     templateIdentifier: FormElementTemplateIdentifier,
     templateDisplayName: string,
     parentMemberKey: string,
-  ) {
+  ): {
+    definitionModel: FormElementDefinitionModel<unknown>;
+    memberModel: FormElementMemberModel;
+  } {
     const config = this._formBuilderRegistryService.get(templateIdentifier);
 
     // allow non-registered template to be added because form definition structure
     // should be completed even if don't have all the config data
     if (!config) {
-      const { definitionModel, memberModel } = this._createElementDefinition(
+      const {
+        definitionModel,
+        memberModel,
+      } = this._createElementDefinitionAndMemberModels(
         templateIdentifier,
         templateDisplayName,
         'Unknown',
@@ -59,7 +65,10 @@ export class FormBuilderService {
     }
 
     // default element definition creation
-    const { definitionModel, memberModel } = this._createElementDefinition(
+    const {
+      definitionModel,
+      memberModel,
+    } = this._createElementDefinitionAndMemberModels(
       config.templateIdentifier,
       config.templateDisplayName,
       config.dataType,
@@ -90,6 +99,10 @@ export class FormBuilderService {
     formDefinitionModel.definitionList = formDefinitionModel.definitionList.filter(
       (definition) => definition.key !== memberModel.definitionKey,
     );
+    // if this is root, remove from root
+    if (formDefinitionModel.rootMemberKey === memberKey) {
+      formDefinitionModel.rootMemberKey = '';
+    }
   }
 
   updateElementDefinition(
@@ -119,20 +132,29 @@ export class FormBuilderService {
     memberModel: FormElementMemberModel,
     parentMemberKey: string,
   ): void {
-    formDefinitionModel.memberList.push(memberModel);
+    // if this is first member, it is root
+    if (!formDefinitionModel.memberList.length) {
+      formDefinitionModel.rootMemberKey = memberModel.key;
+    }
+    // add to parent's children list
     if (parentMemberKey) {
       const parentMember = formDefinitionModel.memberList.find(
         (member) => member.key === parentMemberKey,
       );
       parentMember.children.push(memberModel);
     }
+    // add to member list
+    formDefinitionModel.memberList.push(memberModel);
   }
 
-  private _createElementDefinition(
+  private _createElementDefinitionAndMemberModels(
     templateIdentifier: string,
     templateDisplayName: string,
     dataType: FormElementDataType,
-  ) {
+  ): {
+    definitionModel: FormElementDefinitionModel<unknown>;
+    memberModel: FormElementMemberModel;
+  } {
     const definitionModel = new FormElementDefinitionModel();
     definitionModel.key = newGuid();
     definitionModel.templateIdentifier = templateIdentifier;

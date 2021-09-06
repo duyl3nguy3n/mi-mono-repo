@@ -30,14 +30,13 @@ export class DefinitionViewComponent implements OnInit {
 
   setFormDefinition() {
     this.formDefinitionModel = this._formBuilderService.createFormDefinition();
-    const { memberModel } = this._formBuilderService.addElement(
-      this.formDefinitionModel,
-      'FormGroup',
-      'Form',
-      null,
-    );
-    this.formDefinitionModel.rootMemberKey = memberModel.key;
-    this.memberKeyList = [this.formDefinitionModel.rootMemberKey];
+    this.setMemberKeyList();
+  }
+
+  setMemberKeyList(): void {
+    this.memberKeyList = this.formDefinitionModel.rootMemberKey
+      ? [this.formDefinitionModel.rootMemberKey]
+      : [];
   }
 
   handleEvent($event: FormBuilderEvent) {
@@ -45,7 +44,7 @@ export class DefinitionViewComponent implements OnInit {
       if ($event.formDefinitionJson) {
         this.formDefinitionModel = JSON.parse($event.formDefinitionJson);
       }
-      this.memberKeyList = [this.formDefinitionModel.rootMemberKey];
+      this.setMemberKeyList();
       this.formBuilderComponent.render(
         this.formDefinitionModel,
         this.memberKeyList,
@@ -63,7 +62,11 @@ export class DefinitionViewComponent implements OnInit {
       this.formBuilderComponent.lastActiveDefinitionKey$.next(
         definitionModel.key,
       );
-      this.formBuilderComponent.reRender();
+      this.setMemberKeyList();
+      this.formBuilderComponent.render(
+        this.formDefinitionModel,
+        this.memberKeyList,
+      );
       return;
     }
 
@@ -72,7 +75,11 @@ export class DefinitionViewComponent implements OnInit {
         this.formDefinitionModel,
         $event.memberKey,
       );
-      this.formBuilderComponent.reRender();
+      this.setMemberKeyList();
+      this.formBuilderComponent.render(
+        this.formDefinitionModel,
+        this.memberKeyList,
+      );
       return;
     }
 

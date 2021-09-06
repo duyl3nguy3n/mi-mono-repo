@@ -15,7 +15,7 @@ import { FormElementDefinitionModel } from './form-element-definition-model';
  */
 @MetadataIdentifier('FormBooleanDefinitionModel')
 @Template('FormGroup', 'Form')
-export class FormBooleanDefinitionModel extends FormElementDefinitionModel<unknown> {
+export class FormBooleanDefinitionModel extends FormElementDefinitionModel<boolean> {
   dataType: FormElementDataType = 'Boolean';
 
   @DisplayOrder(10)
