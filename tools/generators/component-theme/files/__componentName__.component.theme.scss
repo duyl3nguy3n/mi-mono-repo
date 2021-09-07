@@ -1,0 +1,20 @@
+@use 'sass:map';
+@use '~@angular/material' as mat;
+
+@mixin silo-<%= componentName %>-color($config-or-theme, $custom-theme) {
+  // Extract the color configuration in case a theme has been passed.
+  $color-config: mat.get-color-config($config-or-theme);
+
+  // TODO: custom theme go here
+}
+
+@mixin silo-<%= componentName %>-theme($theme, $custom-theme) {
+  // Extracts the color and typography configurations from the theme.
+  $color: mat.get-color-config($theme);
+
+  // Do not generate styles if configurations for individual theming
+  // systems have been explicitly set to `null`.
+  @if $color !=null {
+    @include silo-<%= componentName %>-color($color, $custom-theme);
+  }
+}
