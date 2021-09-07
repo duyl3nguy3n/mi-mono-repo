@@ -4,10 +4,29 @@
 @mixin silo-label-color($config-or-theme, $custom-theme) {
   // Extract the color configuration in case a theme has been passed.
   $color-config: mat.get-color-config($config-or-theme);
+  $primary-palette: map.get($color-config, 'primary');
+  $warn-palette: map.get($color-config, 'warn');
+  $highlight-palette: map.get($custom-theme, 'palette', 'highlight');
+  $success-palette: map.get($custom-theme, 'palette', 'success');
   $field-label-color: map.get($custom-theme, 'foreground', 'field-label');
 
+  // default color
   .silo-label {
     color: $field-label-color;
+  }
+
+  // focus color
+  .silo-form-field:focus-within {
+    .silo-label {
+      color: initial;
+    }
+  }
+
+  // error color
+  .silo-form-field--has-error {
+    .silo-label {
+      color: mat.get-color-from-palette($warn-palette) !important;
+    }
   }
 }
 
