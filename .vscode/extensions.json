@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "alexiv.vscode-angular2-files",
+    "andys8.jest-snippets",
     "angular.ng-template",
     "christian-kohler.path-intellisense",
     "coenraads.bracket-pair-colorizer",
@@ -10,6 +11,7 @@
     "firsttris.vscode-jest-runner",
     "mikael.angular-beastcode",
     "nrwl.angular-console",
+    "pkief.material-icon-theme",
     "quicktype.quicktype",
     "stringham.move-ts",
     "tyriar.sort-lines"
