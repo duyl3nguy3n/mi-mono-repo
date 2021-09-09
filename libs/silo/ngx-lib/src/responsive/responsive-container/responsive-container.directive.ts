@@ -50,7 +50,16 @@ export class ResponsiveContainerDirective implements OnInit {
         .filter(
           (c) => c && !this._elementRef.nativeElement.classList.contains(c),
         )
-        .forEach((c) => this._elementRef.nativeElement.classList.add(c));
+        .forEach((c) => {
+          this._elementRef.nativeElement.classList.add(c);
+
+          // if this is a start of inline block, insert a div before
+          if (c === 'inline-block--start') {
+            this._elementRef.nativeElement.before(
+              document.createElement('div'),
+            );
+          }
+        });
       return;
     }
 
@@ -85,7 +94,14 @@ export class ResponsiveContainerDirective implements OnInit {
         .filter(
           (c) => c && this._elementRef.nativeElement.classList.contains(c),
         )
-        .forEach((c) => this._elementRef.nativeElement.classList.remove(c));
+        .forEach((c) => {
+          this._elementRef.nativeElement.classList.remove(c);
+
+          // if this was a start of inline block, remove the before div that was inserted
+          if (c === 'inline-block--start') {
+            this._elementRef.nativeElement.previousElementSibling?.remove();
+          }
+        });
       return;
     }
 
