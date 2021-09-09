@@ -49,7 +49,13 @@ export class MetadataFormService {
       const propertyMetadata = metadata.propertyMetadataMap[propertyKey];
 
       if (Array.isArray(propertyValue)) {
-        // TODO: Build node model for array
+        this.addPropertyAsElement(
+          formDefinitionModel,
+          propertyKey,
+          propertyValue,
+          propertyMetadata,
+          parentMemberKey,
+        );
       } else if (propertyValue instanceof MetadataModel) {
         // add metadata model as element
         // const propertyMetadata = metadata.propertyMetadataMap[propertyKey];

@@ -27,9 +27,6 @@ export abstract class MultiSelectFieldComponent implements OnInit {
   label = '';
 
   @Input()
-  placeholder = '';
-
-  @Input()
   hint = '';
 
   @Input()
