@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { newGuid } from '../../../../utils/new-guid';
-import { FormTextDefinitionModel } from '../../../models/form-text-definition-model';
+import { FormTextDefinitionModel } from '../../../models/definitions/form-text-definition-model';
 import { FormBuilderRegistryService } from '../../../services/form-builder-registry.service';
 import { FormElementDefinitionFormComponent } from '../../form-element-definition-form/form-element-definition-form.component';
 import { TextAreaModule } from './../../../../form-field/text/text-area/text-area.module';

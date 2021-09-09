@@ -2,8 +2,8 @@ import { Component, Input, OnDestroy } from '@angular/core';
 import { merge } from 'lodash';
 import { Subject } from 'rxjs';
 import { FormBuilderComponent } from '../../form-builder.component';
+import { FormElementDefinitionModel } from '../../models/definitions/form-element-definition-model';
 import { UpdateFormElementDefinitionEvent } from '../../models/form-builder-events';
-import { FormElementDefinitionModel } from '../../models/form-element-definition-model';
 import { FormElementNodeModel } from '../../models/form-element-node-model';
 import { HasNodeModel } from '../../models/has-node-model';
 

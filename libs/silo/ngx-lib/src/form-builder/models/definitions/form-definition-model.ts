@@ -1,5 +1,5 @@
+import { FormElementMemberModel } from '../form-element-member-model';
 import { FormElementDefinitionModel } from './form-element-definition-model';
-import { FormElementMemberModel } from './form-element-member-model';
 
 /**
  * The definition model for a form.

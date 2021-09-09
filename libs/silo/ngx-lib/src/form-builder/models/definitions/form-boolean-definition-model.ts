@@ -7,7 +7,7 @@ import {
   MetadataModelExtensions,
   Template,
 } from '@silo/metadata';
-import { FormElementDataType } from './form-definition-types';
+import { FormElementDataType } from '../form-definition-types';
 import { FormElementDefinitionModel } from './form-element-definition-model';
 
 /**

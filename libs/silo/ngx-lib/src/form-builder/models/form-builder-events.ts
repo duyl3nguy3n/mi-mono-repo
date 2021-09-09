@@ -1,5 +1,5 @@
+import { FormElementDefinitionModel } from './definitions/form-element-definition-model';
 import { FormElementTemplateIdentifier } from './form-definition-types';
-import { FormElementDefinitionModel } from './form-element-definition-model';
 
 export type FormBuilderEvent =
   | AddFormElementEvent

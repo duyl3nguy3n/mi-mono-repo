@@ -10,9 +10,9 @@ export type FormElementDataType =
 
 export type FormGroupTemplateIdentifier =
   | 'FormGroup'
+  | 'FormList'
   | 'Section'
-  | 'Fieldset'
-  | 'List';
+  | 'Fieldset';
 
 export type FormTextTemplateIdentifier = 'TextBox' | 'TextArea';
 

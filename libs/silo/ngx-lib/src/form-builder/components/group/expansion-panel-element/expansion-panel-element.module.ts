@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ExpansionPanelModule } from '../../../../expansion-panel/expansion-panel.module';
 import { newGuid } from '../../../../utils/new-guid';
-import { FormGroupDefinitionModel } from '../../../models/form-group-definition-model';
+import { FormGroupDefinitionModel } from '../../../models/definitions/form-group-definition-model';
 import { FormBuilderRegistryService } from '../../../services/form-builder-registry.service';
 import { FormElementDefinitionFormComponent } from '../../form-element-definition-form/form-element-definition-form.component';
 import { FormElementPortalModule } from '../../form-element-portal/form-element-portal.module';

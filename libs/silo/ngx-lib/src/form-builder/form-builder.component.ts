@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AutoFocusDirective } from '../directives/auto-focus/auto-focus.directive';
+import { FormDefinitionModel } from './models/definitions/form-definition-model';
 import { FormAddMenuItemModel } from './models/form-add-menu-item-model';
 import {
   AddFormElementEvent,
@@ -15,7 +16,6 @@ import {
   ImportFormEvent,
   RemoveFormElementEvent,
 } from './models/form-builder-events';
-import { FormDefinitionModel } from './models/form-definition-model';
 import { FormBuilderType } from './models/form-definition-types';
 import {
   FormElementNodeModel,

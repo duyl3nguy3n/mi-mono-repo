@@ -1,10 +1,10 @@
 import { flow, map, sortBy } from 'lodash/fp';
-import { FormDefinitionModel } from './form-definition-model';
-import { FormElementDefinitionModel } from './form-element-definition-model';
+import { FormDefinitionModel } from './definitions/form-definition-model';
+import { FormElementDefinitionModel } from './definitions/form-element-definition-model';
+import { FormGroupDefinitionModel } from './definitions/form-group-definition-model';
+import { FormTextDefinitionModel } from './definitions/form-text-definition-model';
 import { FormElementMemberModel } from './form-element-member-model';
 import { FormElementStateModel } from './form-element-state-model';
-import { FormGroupDefinitionModel } from './form-group-definition-model';
-import { FormTextDefinitionModel } from './form-text-definition-model';
 
 /**
  * The node model for a form element.

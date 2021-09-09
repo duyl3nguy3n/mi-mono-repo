@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BooleanCheckboxModule } from '../../../../form-field/form-field.public-api';
 import { newGuid } from '../../../../utils/new-guid';
-import { FormBooleanDefinitionModel } from '../../../models/form-boolean-definition-model';
+import { FormBooleanDefinitionModel } from '../../../models/definitions/form-boolean-definition-model';
 import { FormBuilderRegistryService } from '../../../services/form-builder-registry.service';
 import { FormElementContainerModule } from '../../form-element-definition-container/form-element-definition-container.module';
 import { FormElementDefinitionFormComponent } from '../../form-element-definition-form/form-element-definition-form.component';

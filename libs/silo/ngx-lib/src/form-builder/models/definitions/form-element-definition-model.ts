@@ -1,5 +1,5 @@
 import { MetadataModel } from '@silo/metadata';
-import { FormElementDataType } from './form-definition-types';
+import { FormElementDataType } from '../form-definition-types';
 
 /**
  * The base definition model for a form element.

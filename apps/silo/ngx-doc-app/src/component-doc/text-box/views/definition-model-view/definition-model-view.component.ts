@@ -8,10 +8,9 @@ import { merge } from 'lodash';
   styleUrls: ['./definition-model-view.component.scss'],
 })
 export class DefinitionModelViewComponent implements OnInit {
-  textDefinitionModel: FormTextDefinitionModel;
+  textDefinitionModel = new FormTextDefinitionModel();
 
   ngOnInit() {
-    this.textDefinitionModel = new FormTextDefinitionModel();
     this.textDefinitionModel.label = 'Name';
     this.textDefinitionModel.placeholder = 'First Last';
     this.textDefinitionModel.hint = 'Please enter your name';

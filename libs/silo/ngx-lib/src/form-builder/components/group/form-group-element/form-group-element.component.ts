@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormGroupDefinitionModel } from '../../../models/definitions/form-group-definition-model';
 import { FormElementNodeModel } from '../../../models/form-element-node-model';
-import { FormGroupDefinitionModel } from '../../../models/form-group-definition-model';
 import { HasNodeModel } from '../../../models/has-node-model';
 
 @Component({

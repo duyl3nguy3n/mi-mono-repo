@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { merge } from 'lodash';
 import { newGuid } from '../../utils/new-guid';
-import { FormDefinitionModel } from '../models/form-definition-model';
-import { FormElementDefinitionModel } from '../models/form-element-definition-model';
+import { FormDefinitionModel } from '../models/definitions/form-definition-model';
+import { FormElementDefinitionModel } from '../models/definitions/form-element-definition-model';
 import {
   FormElementDataType,
   FormElementTemplateIdentifier,
