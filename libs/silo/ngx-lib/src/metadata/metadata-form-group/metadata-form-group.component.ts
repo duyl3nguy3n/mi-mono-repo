@@ -3,11 +3,11 @@ import { FormElementNodeModel } from '../../form-builder/models/form-element-nod
 import { HasNodeModel } from '../../form-builder/models/has-node-model';
 
 @Component({
-  selector: 'silo-metadata-form-group-portal',
-  templateUrl: './metadata-form-group-portal.component.html',
-  styleUrls: ['./metadata-form-group-portal.component.scss'],
+  selector: 'silo-metadata-form-group',
+  templateUrl: './metadata-form-group.component.html',
+  styleUrls: ['./metadata-form-group.component.scss'],
 })
-export class MetadataFormGroupPortalComponent implements HasNodeModel {
+export class MetadataFormGroupComponent implements HasNodeModel {
   @Input()
   nodeModel: FormElementNodeModel = null;
 }

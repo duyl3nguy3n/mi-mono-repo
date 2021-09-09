@@ -18,7 +18,7 @@ import {
   HasNodeModel,
   instanceOfHasNodeModel,
 } from '../../form-builder/models/has-node-model';
-import { MetadataFormGroupPortalComponent } from '../metadata-form-group-portal/metadata-form-group-portal.component';
+import { MetadataFormGroupComponent } from '../metadata-form-group/metadata-form-group.component';
 import { MetadataTemplateRegistryService } from '../services/metadata-template-registry.service';
 
 @Component({
@@ -36,7 +36,7 @@ export class MetadataFormElementPortalComponent
 
   constructor(
     @Optional()
-    private _metadataFormGroupPortalComponent: MetadataFormGroupPortalComponent,
+    private _metadataFormGroupComponent: MetadataFormGroupComponent,
     private _metadataTemplateRegistryService: MetadataTemplateRegistryService,
   ) {}
 
@@ -94,8 +94,8 @@ export class MetadataFormElementPortalComponent
       this.nodeModel.state.formGroup = componentRef.instance.formGroup;
 
       // add form group to parent metadata-form-group-portal
-      if (this._metadataFormGroupPortalComponent) {
-        this._metadataFormGroupPortalComponent.nodeModel.state.formGroup.addControl(
+      if (this._metadataFormGroupComponent) {
+        this._metadataFormGroupComponent.nodeModel.state.formGroup.addControl(
           this.nodeModel.definitionModel.propertyKey,
           componentRef.instance.formGroup,
         );
