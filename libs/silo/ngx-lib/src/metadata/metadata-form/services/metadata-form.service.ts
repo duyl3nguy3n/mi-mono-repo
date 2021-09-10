@@ -6,8 +6,8 @@ import {
   PropertyMetadata,
 } from '@silo/metadata';
 import { merge } from 'lodash';
-import { FormDefinitionModel } from '../../form-builder/models/definitions/form-definition-model';
-import { FormBuilderService } from '../../form-builder/services/form-builder.service';
+import { FormDefinitionModel } from '../../../form-builder/models/definitions/form-definition-model';
+import { FormBuilderService } from '../../../form-builder/services/form-builder.service';
 
 @Injectable({
   providedIn: 'root',

@@ -1,3 +1,4 @@
+import { FormMultiSelectDefinitionModel } from '../form-builder.public-api';
 import { FormElementDefinitionModel } from './definitions/form-element-definition-model';
 import { FormGroupDefinitionModel } from './definitions/form-group-definition-model';
 import { FormTextDefinitionModel } from './definitions/form-text-definition-model';
@@ -20,7 +21,8 @@ export class FormElementNodeModel {
   definitionModel!:
     | FormElementDefinitionModel
     | FormTextDefinitionModel
-    | FormGroupDefinitionModel;
+    | FormGroupDefinitionModel
+    | FormMultiSelectDefinitionModel;
 
   /** The children of this node */
   children: Array<FormElementNodeModel> = [];

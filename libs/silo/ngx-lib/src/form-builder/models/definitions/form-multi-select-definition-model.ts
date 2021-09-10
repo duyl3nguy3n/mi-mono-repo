@@ -61,7 +61,7 @@ export class FormMultiSelectDefinitionModel extends FormElementDefinitionModel<u
 
   @DisplayOrder(100)
   @Template('FormList', 'Form List')
-  @ItemMetadataModel(new LookupModel())
+  @ItemMetadataModel(() => new LookupModel())
   @FieldSize('col-12')
   @Label('Options')
   options: Array<LookupModel> = [];

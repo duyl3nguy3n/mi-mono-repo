@@ -116,11 +116,11 @@ export class MetadataModelExtensions {
             throw new Error('itemMetadataModel is required');
           }
           propertyClassMetadata = MetadataModelExtensions.createClassMetadata(
-            propertyMetadata.itemMetadataModel,
+            propertyMetadata.itemMetadataModel(),
           );
           if (propertyClassMetadata?.metadataIdentifier) {
             MetadataModelExtensions.createMetadataMap(
-              propertyMetadata.itemMetadataModel,
+              propertyMetadata.itemMetadataModel(),
               metadataMap,
             );
           }

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { FormElementNodeModel } from '../../form-builder/models/form-element-node-model';
-import { HasNodeModel } from '../../form-builder/models/has-node-model';
+import { FormElementNodeModel } from '../../../form-builder/models/form-element-node-model';
+import { HasNodeModel } from '../../../form-builder/models/has-node-model';
 
 @Component({
   selector: 'silo-metadata-form-group',

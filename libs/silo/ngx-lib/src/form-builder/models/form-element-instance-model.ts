@@ -1,5 +1,5 @@
 import { ComponentRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { instanceOfGetFormValue } from './get-form-value';
 
 /**
@@ -10,12 +10,18 @@ export class FormElementInstanceModel {
 
   isActive = false;
 
+  /** Form group reference for any element */
   formGroup = new FormGroup({});
 
+  /** Form array reference when element is an array or a list */
+  formArray?: FormArray;
+
+  /** Checks of element component is an instance that implements getFormValue() */
   get instanceOfGetFormValue() {
     return instanceOfGetFormValue(this.componentRef?.instance);
   }
 
+  /** If element component implements getFormValue(), return that form value */
   get formValueInstance(): unknown | undefined {
     return instanceOfGetFormValue(this.componentRef?.instance)
       ? this.componentRef?.instance?.getFormValue()

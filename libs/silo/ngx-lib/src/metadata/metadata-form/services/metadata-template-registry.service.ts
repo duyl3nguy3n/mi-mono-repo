@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { FormElementTemplateIdentifier } from '../../form-builder/models/form-definition-types';
-import { TemplateRegistryConfig } from '../models/template-registry-config';
+import { FormElementTemplateIdentifier } from '../../../form-builder/models/form-definition-types';
+import { MetadataTemplateRegistryConfig } from '../models/metadata-template-registry-config';
 
 @Injectable({
   providedIn: 'root',
@@ -8,12 +8,12 @@ import { TemplateRegistryConfig } from '../models/template-registry-config';
 export class MetadataTemplateRegistryService {
   private _templateRegistryConfigMap = new Map<
     FormElementTemplateIdentifier,
-    TemplateRegistryConfig
+    MetadataTemplateRegistryConfig
   >();
 
   register(
     templateIdentifier: FormElementTemplateIdentifier,
-    templateRegistryConfig: TemplateRegistryConfig,
+    templateRegistryConfig: MetadataTemplateRegistryConfig,
   ) {
     this._templateRegistryConfigMap.set(
       templateIdentifier,
