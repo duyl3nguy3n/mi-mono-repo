@@ -8,7 +8,7 @@ import {
 } from '@silo/metadata';
 import { render } from '@testing-library/angular';
 import 'reflect-metadata';
-import { FormElementNodeModelExtensions } from '../../form-builder/models/form-element-node-model';
+import { FormElementNodeModelExtensions } from '../../form-builder/models/form-element-node-model-extensions';
 import { FormBuilderService } from '../../form-builder/services/form-builder.service';
 import { MetadataFormService } from './metadata-form.service';
 

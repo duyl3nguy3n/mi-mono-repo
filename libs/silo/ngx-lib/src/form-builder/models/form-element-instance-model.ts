@@ -3,22 +3,22 @@ import { FormGroup } from '@angular/forms';
 import { instanceOfGetFormValue } from './get-form-value';
 
 /**
- * The state model for a form element.
+ * The instance model for a form element.
  */
-export class FormElementStateModel {
-  elementComponentRef!: ComponentRef<unknown>;
+export class FormElementInstanceModel {
+  componentRef!: ComponentRef<unknown>;
 
   isActive = false;
 
   formGroup = new FormGroup({});
 
   get instanceOfGetFormValue() {
-    return instanceOfGetFormValue(this.elementComponentRef?.instance);
+    return instanceOfGetFormValue(this.componentRef?.instance);
   }
 
   get formValueInstance(): unknown | undefined {
-    return instanceOfGetFormValue(this.elementComponentRef?.instance)
-      ? this.elementComponentRef?.instance?.getFormValue()
+    return instanceOfGetFormValue(this.componentRef?.instance)
+      ? this.componentRef?.instance?.getFormValue()
       : undefined;
   }
 }

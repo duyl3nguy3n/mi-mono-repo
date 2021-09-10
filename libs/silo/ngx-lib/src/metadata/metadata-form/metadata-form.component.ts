@@ -9,10 +9,8 @@ import {
 import { MetadataModel } from '@silo/metadata';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import {
-  FormElementNodeModel,
-  FormElementNodeModelExtensions,
-} from '../../form-builder/models/form-element-node-model';
+import { FormElementNodeModel } from '../../form-builder/models/form-element-node-model';
+import { FormElementNodeModelExtensions } from '../../form-builder/models/form-element-node-model-extensions';
 import { MetadataFormService } from '../services/metadata-form.service';
 
 @Component({
@@ -45,7 +43,7 @@ export class MetadataFormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.nodeModel.state.formGroup.valueChanges
+    this.nodeModel.instance.formGroup.valueChanges
       .pipe(takeUntil(this._destroy$))
       .subscribe(() => this.emitNewDefinitionModel());
   }
@@ -56,8 +54,8 @@ export class MetadataFormComponent implements OnInit, AfterViewInit {
   }
 
   emitNewDefinitionModel(): void {
-    if (this.nodeModel.state.formGroup.invalid) {
-      this.nodeModel.state.formGroup.markAllAsTouched();
+    if (this.nodeModel.instance.formGroup.invalid) {
+      this.nodeModel.instance.formGroup.markAllAsTouched();
       return;
     }
 

@@ -1,6 +1,6 @@
 <div
   class="form-element-definition-container"
-  [class.active]="nodeModel.state.isActive"
+  [class.active]="nodeModel.instance.isActive"
   tabindex="0"
   (keydown.space)="setActiveNode($event)"
   (focus)="setActiveNode($event)"
@@ -8,21 +8,21 @@
   <div fxLayout="row">
     <div
       class="form-element-definition-container__left-border"
-      [class.active]="nodeModel.state.isActive"
+      [class.active]="nodeModel.instance.isActive"
     ></div>
     <div
       class="form-element-definition-container__content"
-      [class.active]="nodeModel.state.isActive"
+      [class.active]="nodeModel.instance.isActive"
     >
       <div
         class="form-element-definition-container__actions"
         fxLayout="row"
         fxLayoutAlign="end center"
       >
-        <div *ngIf="!nodeModel.state.isActive">
+        <div *ngIf="!nodeModel.instance.isActive">
           <button
             mat-icon-button
-            [color]="nodeModel.state.isActive ? 'primary' : undefined"
+            [color]="nodeModel.instance.isActive ? 'primary' : undefined"
             aria-label="Edit form element"
             matTooltip="Edit form element"
             (click)="setActiveNode($event)"
@@ -30,7 +30,7 @@
             <mat-icon>edit</mat-icon>
           </button>
         </div>
-        <div @render *ngIf="nodeModel.state.isActive">
+        <div @render *ngIf="nodeModel.instance.isActive">
           <!-- TODO: Implement move feature -->
           <!-- <button
             mat-icon-button
@@ -48,7 +48,7 @@
           </button> -->
           <button
             mat-icon-button
-            [color]="nodeModel.state.isActive ? 'primary' : undefined"
+            [color]="nodeModel.instance.isActive ? 'primary' : undefined"
             aria-label="Remove form element"
             matTooltip="Remove form element"
             (click)="removeElement(nodeModel)"
