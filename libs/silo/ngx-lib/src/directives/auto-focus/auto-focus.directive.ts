@@ -1,4 +1,10 @@
-import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Directive,
+  ElementRef,
+  Input,
+} from '@angular/core';
 
 /**
  * @description
@@ -46,7 +52,10 @@ export class AutoFocusDirective implements AfterViewInit {
   @Input()
   focusChildSelectors = '';
 
-  constructor(private _elementRef: ElementRef<HTMLElement>) {}
+  constructor(
+    private _cdr: ChangeDetectorRef,
+    private _elementRef: ElementRef<HTMLElement>,
+  ) {}
 
   static focusFirstFocusable(
     elementRef: ElementRef<HTMLElement> | HTMLElement,
@@ -107,5 +116,7 @@ export class AutoFocusDirective implements AfterViewInit {
       this._elementRef,
       selectors,
     );
+
+    this._cdr.detectChanges();
   }
 }

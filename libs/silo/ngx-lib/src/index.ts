@@ -13,3 +13,4 @@ export * from './navigation/nav-list/nav-list.public-api';
 export * from './offline/offline.public-api';
 export * from './pipes/pipes.public-api';
 export * from './theme-picker/theme-picker.public-api';
+export * from './utils/utils.public-api';

@@ -74,7 +74,11 @@ export class MetadataFormListComponent
 
   removeItem(index: number) {
     this.itemRefs.splice(index, 1);
-    this.nodeModel.instance.formArray.removeAt(index);
+    // do this next cycle where item component refs has been updated
+    // where the component has been removed so form value will be correct
+    setTimeout(() => {
+      this.nodeModel.instance.formArray.removeAt(index);
+    });
   }
 
   getFormValue(): unknown {

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  customMerge,
   FormElementDefinitionModel,
   FormMultiSelectDefinitionModel,
   LookupConfigModel,
 } from '@silo/ngx';
-import { merge } from 'lodash';
 
 @Component({
   selector: 'silo-definition-model-view',
@@ -27,7 +27,7 @@ export class DefinitionModelViewComponent implements OnInit {
   }
 
   updateDefinitionModel(formValue: FormElementDefinitionModel): void {
-    merge(this.definitionModel, formValue);
+    this.definitionModel = customMerge(this.definitionModel, formValue);
     this.setLookupConfig();
   }
 }
