@@ -5,7 +5,7 @@
 >
   <div>
     <ng-container *ngFor="let itemRef of itemRefs; index as i">
-      <div fxLayout="row" fxLayoutAlign="start center">
+      <div fxLayout="row">
         <div class="item-index silo-label">#{{ i + 1 }}</div>
         <div fxFlex="grow">
           <silo-metadata-form-list-item

@@ -4,6 +4,7 @@ export * from './models/definitions/form-definition-model';
 export * from './models/definitions/form-element-definition-model';
 export * from './models/definitions/form-group-definition-model';
 export * from './models/definitions/form-multi-select-definition-model';
+export * from './models/definitions/form-single-select-definition-model';
 export * from './models/definitions/form-text-definition-model';
 export * from './models/form-builder-events';
 export * from './models/form-definition-types';

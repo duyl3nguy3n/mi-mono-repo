@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ClassExpression } from '../../responsive/responsive-container/models/class-expression';
 import { newHtmlId } from '../../utils/new-html-id';
@@ -10,7 +16,7 @@ import { SingleSelectValidatorFactory } from './single-select-validator.factory'
 @Component({
   template: '',
 })
-export abstract class SingleSelectFieldComponent implements OnInit {
+export abstract class SingleSelectFieldComponent implements OnInit, OnChanges {
   formGroup!: FormGroup;
 
   lookupFormControl!: FormControl;
@@ -54,11 +60,17 @@ export abstract class SingleSelectFieldComponent implements OnInit {
 
   constructor(protected _formBuilder: FormBuilder) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.setForm(this.defaultValue);
   }
 
-  setForm(value?: LookupModel) {
+  ngOnChanges(simpleChanges: SimpleChanges): void {
+    if (simpleChanges.isRequired && !simpleChanges.isRequired.firstChange) {
+      this.updateValidators();
+    }
+  }
+
+  setForm(value?: LookupModel): void {
     const validators = SingleSelectValidatorFactory.createValidators(this);
     this.hasValidators = !!validators.length;
     this.lookupFormControl = this._formBuilder.control(value, validators);
@@ -67,16 +79,23 @@ export abstract class SingleSelectFieldComponent implements OnInit {
     });
   }
 
-  clearForm($event: Event) {
+  clearForm($event: Event): void {
     $event.stopPropagation();
     this.lookupFormControl.setValue(null);
   }
 
-  getErrorMessage() {
+  updateValidators() {
+    const validators = SingleSelectValidatorFactory.createValidators(this);
+    this.hasValidators = !!validators.length;
+    this.lookupFormControl.setValidators(validators);
+    this.lookupFormControl.updateValueAndValidity();
+  }
+
+  getErrorMessage(): string {
     return ValidatorService.getFormGroupErrorMessage(this.formGroup);
   }
 
-  compareWith(o1: LookupModel, o2: LookupModel) {
+  compareWith(o1: LookupModel, o2: LookupModel): boolean {
     return o1 && o2 && o1.key === o2.key;
   }
 }

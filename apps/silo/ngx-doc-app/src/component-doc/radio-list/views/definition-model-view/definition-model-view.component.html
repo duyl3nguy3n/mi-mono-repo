@@ -1,0 +1,29 @@
+<silo-example-article>
+  <ng-container headerContent>
+    <h2>Radio List Definition Model</h2>
+  </ng-container>
+  <ng-container bodyContent>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="32px">
+      <div fxFlex="45">
+        <silo-metadata-form
+          [metadataModel]="definitionModel"
+          (newFormValue)="updateDefinitionModel($event)"
+        ></silo-metadata-form>
+      </div>
+      <div>
+        <mat-icon>forward</mat-icon>
+      </div>
+      <div fxFlex="45">
+        <silo-radio-list
+          [label]="definitionModel.label"
+          [hint]="definitionModel.hint"
+          [isRequired]="definitionModel.isRequired"
+          [isReadOnly]="definitionModel.isReadOnly"
+          [fieldSize]="definitionModel.fieldSize"
+          [fieldOutlineSize]="definitionModel.fieldOutlineSize"
+          [lookupConfig]="lookupConfig"
+        ></silo-radio-list>
+      </div>
+    </div>
+  </ng-container>
+</silo-example-article>

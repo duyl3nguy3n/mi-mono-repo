@@ -6,7 +6,8 @@ export type FormElementDataType =
   | 'Array'
   | 'Text'
   | 'Number'
-  | 'Boolean';
+  | 'Boolean'
+  | 'LookupModel';
 
 export type FormGroupTemplateIdentifier =
   | 'FormGroup'

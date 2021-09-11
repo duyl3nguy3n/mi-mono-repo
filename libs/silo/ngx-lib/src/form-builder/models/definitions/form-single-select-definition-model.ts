@@ -15,10 +15,10 @@ import { FormElementDefinitionModel } from './form-element-definition-model';
 /**
  * The definition model for a group element of a form.
  */
-@MetadataIdentifier('FormMultiSelectDefinitionModel')
+@MetadataIdentifier('FormSingleSelectDefinitionModel')
 @Template('FormGroup', 'Form')
-export class FormMultiSelectDefinitionModel extends FormElementDefinitionModel<unknown> {
-  dataType: FormElementDataType = 'Array';
+export class FormSingleSelectDefinitionModel extends FormElementDefinitionModel<unknown> {
+  dataType: FormElementDataType = 'LookupModel';
 
   @DisplayOrder(10)
   @Template('TextBox', 'Text Box')
