@@ -1,4 +1,11 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ClassExpression } from '../../responsive/responsive-container/models/class-expression';
 import { newHtmlId } from '../../utils/new-html-id';
@@ -10,7 +17,7 @@ import { MultiSelectValidatorFactory } from './multi-select-validator.factory';
 @Component({
   template: '',
 })
-export abstract class MultiSelectFieldComponent implements OnInit {
+export abstract class MultiSelectFieldComponent implements OnInit, OnChanges {
   formGroup!: FormGroup;
 
   lookupListFormControl!: FormControl;
@@ -25,9 +32,6 @@ export abstract class MultiSelectFieldComponent implements OnInit {
 
   @Input()
   label = '';
-
-  @Input()
-  placeholder = '';
 
   @Input()
   hint = '';
@@ -45,12 +49,10 @@ export abstract class MultiSelectFieldComponent implements OnInit {
   fieldSize: ClassExpression = 'col-2';
 
   @Input()
-  fieldOutlineSize: ClassExpression;
+  fieldOutlineSize!: ClassExpression;
 
   @Input()
-  set lookupConfig(lookupConfig: LookupConfigModel) {
-    this.options = lookupConfig.lookups;
-  }
+  lookupConfig!: LookupConfigModel;
 
   constructor(
     protected _elementRef: ElementRef<HTMLElement>,
@@ -58,7 +60,18 @@ export abstract class MultiSelectFieldComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.setOptions();
     this.setForm(this.defaultValue);
+  }
+
+  ngOnChanges(simpleChanges: SimpleChanges) {
+    if (simpleChanges.lookupConfig && !simpleChanges.lookupConfig.firstChange) {
+      this.setOptions();
+    }
+  }
+
+  setOptions() {
+    this.options = this.lookupConfig.lookups;
   }
 
   setForm(value: Array<LookupModel>): void {

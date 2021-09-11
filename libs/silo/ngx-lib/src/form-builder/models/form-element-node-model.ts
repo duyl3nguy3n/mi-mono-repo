@@ -1,29 +1,34 @@
-import { flow, map, sortBy } from 'lodash/fp';
-import { FormDefinitionModel } from './definitions/form-definition-model';
+import { FormMultiSelectDefinitionModel } from '../form-builder.public-api';
 import { FormElementDefinitionModel } from './definitions/form-element-definition-model';
 import { FormGroupDefinitionModel } from './definitions/form-group-definition-model';
 import { FormTextDefinitionModel } from './definitions/form-text-definition-model';
+import { FormElementInstanceModel } from './form-element-instance-model';
 import { FormElementMemberModel } from './form-element-member-model';
-import { FormElementStateModel } from './form-element-state-model';
 
 /**
  * The node model for a form element.
  */
 export class FormElementNodeModel {
+  /** Parent member key of this node */
   parentMemberKey = '';
 
+  /** Member key and member model for this node */
   memberKey = '';
   memberModel!: FormElementMemberModel;
 
+  /** Definition key and definition model for this node */
   definitionKey = '';
   definitionModel!:
     | FormElementDefinitionModel
     | FormTextDefinitionModel
-    | FormGroupDefinitionModel;
+    | FormGroupDefinitionModel
+    | FormMultiSelectDefinitionModel;
 
+  /** The children of this node */
   children: Array<FormElementNodeModel> = [];
 
-  state = new FormElementStateModel();
+  /** The instance model of a form element */
+  instance = new FormElementInstanceModel();
 
   /**
    * Traverse and apply callback function to this node and all of its children.
@@ -36,84 +41,32 @@ export class FormElementNodeModel {
   }
 
   /**
-   * Getter for form value instance of this node.
+   * Get form value instance of this node.
    */
   get formValueInstance(): unknown {
-    // field level component should have form group instance which will have form value instance
-    if (this.state.instanceOfGetFormValue) {
-      return this.state.formValueInstance;
+    // return form value instance for field level component that implement getFormValue()
+    if (this.instance.instanceOfGetFormValue) {
+      return this.instance.formValueInstance;
     }
 
-    // container level component will construct form value instance object
-    // with children property keys and their respective form value instances
-    const rawValue = this.state.formGroup.value;
+    // raw value here is the value that is implemented per field component which
+    // could have any shape that is tailored for that field component
+    const rawValue = this.instance.formGroup.value;
+
+    // for each property key in raw value, find the node model then extract
+    // form value instance to build form value instance we need to return
     const formValueInstance: { [key: string]: unknown } = {};
     Object.keys(rawValue).forEach((key) => {
-      formValueInstance[key] = this.children.find(
+      const nodeModel = this.children.find(
         (c) => c.definitionModel.propertyKey === key,
-      )?.state?.formValueInstance;
+      );
+      if (!nodeModel) {
+        console.warn(`Cannot find node model for property: ${key}`);
+        return;
+      }
+      formValueInstance[key] = nodeModel.instance.formValueInstance;
     });
 
     return formValueInstance;
-  }
-}
-
-export class FormElementNodeModelExtensions {
-  /**
-   * Map flat form definition model to tree-like form element node model.
-   *
-   * @static
-   * @param {FormDefinitionModel} formDefinitionModel - The form definition model to map from
-   * @param {string} memberKey - Current member key that need to be mapped
-   * @param {string} [parentMemberKey] - Parent member key of current member
-   * @return {FormElementNodeModel} The
-   */
-  static mapFromFormDefinitionModel(
-    formDefinitionModel: FormDefinitionModel,
-    memberKey: string,
-    parentMemberKey?: string,
-  ): FormElementNodeModel {
-    const nodeModel = new FormElementNodeModel();
-
-    // map keys
-    nodeModel.memberKey = memberKey;
-    nodeModel.parentMemberKey = parentMemberKey
-      ? parentMemberKey
-      : formDefinitionModel.memberList.find((x) =>
-          x.children.find((c) => c.key === memberKey),
-        )?.key ?? '';
-
-    // map member model
-    const memberModel = formDefinitionModel.memberList.find(
-      (x) => x.key === memberKey,
-    );
-    if (!memberModel) {
-      throw new Error('Cannot find member model.');
-    }
-    nodeModel.memberModel = memberModel;
-
-    // map definition model
-    nodeModel.definitionKey = memberModel.definitionKey;
-    const definitionModel = formDefinitionModel.definitionList.find(
-      (x) => x.key === memberModel.definitionKey,
-    );
-    if (!definitionModel) {
-      throw new Error('Cannot find definition model.');
-    }
-    nodeModel.definitionModel = definitionModel;
-
-    // map children
-    nodeModel.children = flow(
-      map<FormElementMemberModel, FormElementNodeModel>((x) =>
-        FormElementNodeModelExtensions.mapFromFormDefinitionModel(
-          formDefinitionModel,
-          x.key,
-          memberKey,
-        ),
-      ),
-      sortBy<FormElementNodeModel>('definitionModel.displayOrder'),
-    )(memberModel.children);
-
-    return nodeModel;
   }
 }

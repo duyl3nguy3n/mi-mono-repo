@@ -12,12 +12,12 @@ import {
 } from '@angular/core';
 import { PropertyMetadata } from '@silo/metadata';
 import { merge } from 'lodash';
-import { FormElementNodeModel } from '../../form-builder/models/form-element-node-model';
-import { instanceOfHasFormGroup } from '../../form-builder/models/has-form-group';
+import { FormElementNodeModel } from '../../../form-builder/models/form-element-node-model';
+import { instanceOfHasFormGroup } from '../../../form-builder/models/has-form-group';
 import {
   HasNodeModel,
   instanceOfHasNodeModel,
-} from '../../form-builder/models/has-node-model';
+} from '../../../form-builder/models/has-node-model';
 import { MetadataFormGroupComponent } from '../metadata-form-group/metadata-form-group.component';
 import { MetadataTemplateRegistryService } from '../services/metadata-template-registry.service';
 
@@ -86,16 +86,16 @@ export class MetadataFormElementPortalComponent
     componentRef.changeDetectorRef.detectChanges();
 
     // store element component ref
-    this.nodeModel.state.elementComponentRef = componentRef;
+    this.nodeModel.instance.componentRef = componentRef;
 
     // handle component instance that has form group
     if (instanceOfHasFormGroup(componentRef.instance)) {
       // keep reference to component instance form group
-      this.nodeModel.state.formGroup = componentRef.instance.formGroup;
+      this.nodeModel.instance.formGroup = componentRef.instance.formGroup;
 
-      // add form group to parent metadata-form-group-portal
+      // if there is parent form group, add this form group to parent form group
       if (this._metadataFormGroupComponent) {
-        this._metadataFormGroupComponent.nodeModel.state.formGroup.addControl(
+        this._metadataFormGroupComponent.nodeModel.instance.formGroup.addControl(
           this.nodeModel.definitionModel.propertyKey,
           componentRef.instance.formGroup,
         );

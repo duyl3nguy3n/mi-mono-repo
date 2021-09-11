@@ -9,7 +9,7 @@ export interface PropertyMetadata {
   hint?: string;
   isRequired?: boolean;
   isRequiredToSubmit?: boolean;
-  itemMetadataModel?: MetadataModel;
+  itemMetadataModel?: () => MetadataModel;
   label?: string;
   metadataIdentifier?: string;
   placeholder?: string;

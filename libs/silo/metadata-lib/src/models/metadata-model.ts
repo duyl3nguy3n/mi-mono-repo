@@ -10,7 +10,7 @@ import { PropertyMetadataMap } from './property-metadata-map';
  * Model with metadata for it's class and properties.
  */
 export class MetadataModel {
-  metadataMap!: MetadataMap;
+  metadataMap?: MetadataMap;
 }
 
 export class MetadataModelExtensions {
@@ -116,11 +116,11 @@ export class MetadataModelExtensions {
             throw new Error('itemMetadataModel is required');
           }
           propertyClassMetadata = MetadataModelExtensions.createClassMetadata(
-            propertyMetadata.itemMetadataModel,
+            propertyMetadata.itemMetadataModel(),
           );
           if (propertyClassMetadata?.metadataIdentifier) {
             MetadataModelExtensions.createMetadataMap(
-              propertyMetadata.itemMetadataModel,
+              propertyMetadata.itemMetadataModel(),
               metadataMap,
             );
           }

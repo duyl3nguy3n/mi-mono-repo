@@ -40,4 +40,6 @@ export class FormElementDefinitionModel<T = unknown> extends MetadataModel {
   fieldOutlineSize?: string;
 
   fieldSize?: string;
+
+  itemMetadataModel?: () => MetadataModel;
 }

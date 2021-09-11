@@ -1,6 +1,7 @@
 export * from './avatar/avatar.public-api';
 export * from './control-menu-bar/control-menu-bar.public-api';
 export * from './directives/keyboard-click/keyboard-click.public-api';
+export * from './fieldset/fieldset.public-api';
 export * from './form-builder/form-builder.public-api';
 export * from './form-field/boolean/boolean.public-api';
 export * from './form-field/form-field.public-api';
@@ -12,3 +13,4 @@ export * from './navigation/nav-list/nav-list.public-api';
 export * from './offline/offline.public-api';
 export * from './pipes/pipes.public-api';
 export * from './theme-picker/theme-picker.public-api';
+export * from './utils/utils.public-api';

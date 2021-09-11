@@ -40,7 +40,7 @@ class TestPersonModel extends MetadataModel {
   age!: number;
 
   @Template('FormList', 'List')
-  @ItemMetadataModel(new TestPhoneModel())
+  @ItemMetadataModel(() => new TestPhoneModel())
   phones: Array<TestPhoneModel> = [];
 }
 

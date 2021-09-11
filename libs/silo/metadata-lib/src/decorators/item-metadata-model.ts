@@ -2,15 +2,17 @@ import { MetadataModel } from '../models/metadata-model';
 import { ReflectMetadataExtensions } from '../utils/reflect-metadata-extensions';
 
 /**
- * Identify this property to have required to save metadata.
+ * Identify this property to have item metadata model metadata.
  *
- * @param {boolean} [isRequired=true] The boolean flag which is default to true.
+ * @param createItemMetadataModelFn The create item metadata model function
  */
-export function ItemMetadataModel(itemMetadataModel: MetadataModel) {
+export function ItemMetadataModel(
+  createItemMetadataModelFn: () => MetadataModel,
+) {
   return (target, propertyKey?: string) => {
     ReflectMetadataExtensions.defineMetadata(
       'itemMetadataModel',
-      itemMetadataModel,
+      createItemMetadataModelFn,
       target,
       propertyKey,
     );

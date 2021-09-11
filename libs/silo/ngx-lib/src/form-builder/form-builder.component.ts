@@ -17,10 +17,8 @@ import {
   RemoveFormElementEvent,
 } from './models/form-builder-events';
 import { FormBuilderType } from './models/form-definition-types';
-import {
-  FormElementNodeModel,
-  FormElementNodeModelExtensions,
-} from './models/form-element-node-model';
+import { FormElementNodeModel } from './models/form-element-node-model';
+import { FormElementNodeModelExtensions } from './models/form-element-node-model-extensions';
 import { FormBuilderRegistryService } from './services/form-builder-registry.service';
 
 @Component({
@@ -95,16 +93,16 @@ export class FormBuilderComponent implements OnInit {
 
   setActiveNode(nodeModel: FormElementNodeModel) {
     if (this.activeNodeModel) {
-      this.activeNodeModel.state.isActive = false;
+      this.activeNodeModel.instance.isActive = false;
     }
-    nodeModel.state.isActive = true;
+    nodeModel.instance.isActive = true;
     this.activeNodeModel = nodeModel;
     this.lastActiveDefinitionKey$.next(nodeModel.definitionKey);
   }
 
   removeActiveNode(): void {
     if (this.activeNodeModel) {
-      this.activeNodeModel.state.isActive = false;
+      this.activeNodeModel.instance.isActive = false;
     } else {
       return;
     }
