@@ -4,8 +4,8 @@ import { ClassExpression } from '../../responsive/responsive-container/models/cl
 import { newHtmlId } from '../../utils/new-html-id';
 import { LookupModel } from '../models/lookup-model';
 import { ValidatorService } from '../services/validator.service';
+import { CustomDateAdapter, NativeDate } from './custom-date-adapter';
 import { DateValidatorFactory } from './date-validator.factory';
-import { NativeDate, NativeDateAdapter } from './native-date-adapter';
 
 @Component({
   template: '',
@@ -57,7 +57,7 @@ export abstract class DateFieldComponent implements OnInit {
     const validators = DateValidatorFactory.createValidators(this);
     this.hasValidators = !!validators.length;
     this.dateFormControl = this._formBuilder.control(
-      NativeDateAdapter.toDate(value),
+      CustomDateAdapter.toLocaleDate(value),
       validators,
     );
     this.formGroup = this._formBuilder.group({
