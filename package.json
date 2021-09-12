@@ -14,6 +14,8 @@
     "serve:silo-ngx-doc-app": "ng serve silo-ngx-doc-app",
     "build:silo-ngx-doc-app": "ng build silo-ngx-doc-app",
     "build:silo-ngx-doc-app:prod": "ng build silo-ngx-doc-app --configuration production",
+    "postbuild:sw:silo-ngx-doc-app": "webpack --config ./apps/silo/ngx-doc-app/webpack-sw.dev.config.js --progress --colors && node ./apps/silo/ngx-doc-app/workbox-build-inject.js",
+    "postbuild:sw:silo-ngx-doc-app:prod": "webpack --config ./apps/silo/ngx-doc-app/webpack-sw.prod.config.js --progress --colors && node ./apps/silo/ngx-doc-app/workbox-build-inject.js",
     "fb:serve:silo-ngx-doc-app": "firebase serve --only hosting:silo-ngx-doc",
     "fb:deploy:silo-ngx-doc-app": "firebase deploy --only hosting:silo-ngx-doc",
     "serve:cms": "ng serve cms",
