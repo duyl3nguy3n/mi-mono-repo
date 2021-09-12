@@ -1,7 +1,10 @@
 <div class="preview-view" fxLayout="row wrap" fxLayoutAlign="center center">
   <silo-preview-article linkRoute="../boolean-checkbox">
     <ng-container previewContent>
-      <silo-boolean-checkbox label="Label" fieldSize="col-12">
+      <silo-boolean-checkbox
+        label="I agree to the term of service"
+        fieldSize="col-12"
+      >
       </silo-boolean-checkbox>
     </ng-container>
     <ng-container summaryContent>
@@ -12,10 +15,10 @@
   <silo-preview-article linkRoute="../checkbox-list">
     <ng-container previewContent>
       <silo-checkbox-list
-        label="Label"
+        label="Which of the following electronic devices do you own?"
         [lookupConfig]="lookupConfig"
         [isRequired]="true"
-        hint="Please select an option"
+        hint="Check all that apply"
         fieldSize="col-12"
       ></silo-checkbox-list>
     </ng-container>
@@ -27,7 +30,7 @@
   <silo-preview-article linkRoute="../date-picker">
     <ng-container previewContent>
       <silo-date-picker
-        label="Label"
+        label="Due Date"
         [isRequired]="true"
         hint="Please enter a date"
         fieldSize="col-12"
@@ -41,9 +44,9 @@
   <silo-preview-article linkRoute="../number-box">
     <ng-container previewContent>
       <silo-number-box
-        label="Label"
+        label="Number of Days"
         [isRequired]="true"
-        hint="Please enter a number"
+        hint="Positive number"
         fieldSize="col-12"
       ></silo-number-box>
     </ng-container>
@@ -55,9 +58,9 @@
   <silo-preview-article linkRoute="../phone-box">
     <ng-container previewContent>
       <silo-phone-box
-        label="Label"
+        label="Phone Number"
         [isRequired]="true"
-        hint="Please include area code"
+        hint="Format should be XXX-XXX-XXXX"
         fieldSize="col-12"
       ></silo-phone-box>
     </ng-container>
@@ -78,7 +81,7 @@
   <silo-preview-article linkRoute="../radio-list">
     <ng-container previewContent>
       <silo-radio-list
-        label="Label"
+        label="Are you currently working?"
         [lookupConfig]="lookupConfig"
         [isRequired]="true"
         hint="Please select an option"
@@ -93,7 +96,7 @@
   <silo-preview-article linkRoute="../single-autocomplete">
     <ng-container previewContent>
       <silo-single-autocomplete
-        label="Label"
+        label="State"
         [lookupConfig]="lookupConfig"
         [isRequired]="true"
         hint="Please select an option"
@@ -108,7 +111,7 @@
   <silo-preview-article linkRoute="../single-select">
     <ng-container previewContent>
       <silo-single-select
-        label="Label"
+        label="State"
         [lookupConfig]="lookupConfig"
         [isRequired]="true"
         hint="Please select an option"
@@ -123,7 +126,7 @@
   <silo-preview-article linkRoute="../text-area">
     <ng-container previewContent>
       <silo-text-area
-        label="Label"
+        label="Describe your work experiences"
         [isRequired]="true"
         hint="Please fill out this field"
         fieldSize="col-12"
@@ -138,7 +141,7 @@
   <silo-preview-article linkRoute="../text-box">
     <ng-container previewContent>
       <silo-text-box
-        label="Label"
+        label="Name"
         [isRequired]="true"
         hint="Please fill out this field"
         fieldSize="col-12"
@@ -153,7 +156,7 @@
   <silo-preview-article linkRoute="../time-picker">
     <ng-container previewContent>
       <silo-time-picker
-        label="Label"
+        label="At what time?"
         [isRequired]="true"
         hint="Please enter a time"
         fieldSize="col-12"
@@ -167,7 +170,7 @@
   <silo-preview-article linkRoute="../uppy-file-box">
     <ng-container previewContent>
       <silo-uppy-file-box
-        label="Label"
+        label="Medical Record"
         [isRequired]="true"
         hint="Please upload a file"
         fieldSize="col-12"

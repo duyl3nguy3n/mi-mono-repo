@@ -3,7 +3,7 @@
     <h2>Time picker is not required</h2>
   </ng-container>
   <ng-container bodyContent>
-    <silo-time-picker label="Label"></silo-time-picker>
+    <silo-time-picker label="At what time?"></silo-time-picker>
   </ng-container>
 </silo-example-article>
 
@@ -12,7 +12,10 @@
     <h2>Time picker is required</h2>
   </ng-container>
   <ng-container bodyContent>
-    <silo-time-picker label="Label" [isRequired]="true"></silo-time-picker>
+    <silo-time-picker
+      label="At what time?"
+      [isRequired]="true"
+    ></silo-time-picker>
   </ng-container>
 </silo-example-article>
 
@@ -22,7 +25,7 @@
   </ng-container>
   <ng-container bodyContent>
     <silo-time-picker
-      label="Label"
+      label="At what time?"
       [isRequired]="true"
       hint="Please pick a time"
     >
@@ -51,7 +54,7 @@
   </ng-container>
   <ng-container bodyContent>
     <silo-time-picker
-      label="Label"
+      label="At what time?"
       defaultValue="12:30"
       [isReadOnly]="true"
       [isRequired]="true"

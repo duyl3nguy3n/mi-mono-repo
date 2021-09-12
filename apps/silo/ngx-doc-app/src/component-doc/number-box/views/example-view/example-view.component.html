@@ -3,7 +3,7 @@
     <h2>Number box is not required</h2>
   </ng-container>
   <ng-container bodyContent>
-    <silo-number-box label="Label"></silo-number-box>
+    <silo-number-box label="Number of Days"></silo-number-box>
   </ng-container>
 </silo-example-article>
 
@@ -12,7 +12,10 @@
     <h2>Number box is required</h2>
   </ng-container>
   <ng-container bodyContent>
-    <silo-number-box label="Label" [isRequired]="true"></silo-number-box>
+    <silo-number-box
+      label="Number of Days"
+      [isRequired]="true"
+    ></silo-number-box>
   </ng-container>
 </silo-example-article>
 
@@ -22,9 +25,9 @@
   </ng-container>
   <ng-container bodyContent>
     <silo-number-box
-      label="Label"
+      label="Number of Days"
       [isRequired]="true"
-      hint="Please enter a number"
+      hint="Positive number"
     ></silo-number-box>
   </ng-container>
 </silo-example-article>
@@ -48,7 +51,7 @@
   </ng-container>
   <ng-container bodyContent>
     <silo-number-box
-      label="Label"
+      label="Number of Days"
       defaultValue="123"
       [isRequired]="true"
       [isReadOnly]="true"

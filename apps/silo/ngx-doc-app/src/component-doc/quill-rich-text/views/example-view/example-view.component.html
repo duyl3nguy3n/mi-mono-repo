@@ -3,7 +3,9 @@
     <h2>Quill rich text is not required</h2>
   </ng-container>
   <ng-container bodyContent>
-    <silo-quill-rich-text label="Label"></silo-quill-rich-text>
+    <silo-quill-rich-text
+      label="Describe your work experiences"
+    ></silo-quill-rich-text>
   </ng-container>
 </silo-example-article>
 
@@ -13,7 +15,7 @@
   </ng-container>
   <ng-container bodyContent>
     <silo-quill-rich-text
-      label="Label"
+      label="Describe your work experiences"
       [isRequired]="true"
     ></silo-quill-rich-text>
   </ng-container>
@@ -25,7 +27,7 @@
   </ng-container>
   <ng-container bodyContent>
     <silo-quill-rich-text
-      label="Label"
+      label="Describe your work experiences"
       [isRequired]="true"
       [maxLength]="10"
     ></silo-quill-rich-text>
@@ -38,9 +40,9 @@
   </ng-container>
   <ng-container bodyContent>
     <silo-quill-rich-text
-      label="Label"
+      label="Describe your work experiences"
       [isRequired]="true"
-      hint="Please fill out this fill"
+      hint="Please be descriptive as possible"
     ></silo-quill-rich-text>
   </ng-container>
 </silo-example-article>
@@ -65,7 +67,7 @@
   </ng-container>
   <ng-container bodyContent>
     <silo-quill-rich-text
-      label="Label"
+      label="Describe your work experiences"
       defaultValue="<b>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus</b>. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Pellentesque in ipsum id orci porta dapibus."
       [isRequired]="true"
       [isReadOnly]="true"

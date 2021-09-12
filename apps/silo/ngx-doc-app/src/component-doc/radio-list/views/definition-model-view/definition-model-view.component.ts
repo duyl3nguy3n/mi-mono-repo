@@ -16,8 +16,12 @@ export class DefinitionModelViewComponent implements OnInit {
   lookupConfig = new LookupConfigModel();
 
   ngOnInit() {
-    this.definitionModel.label = 'What is your favorite color?';
+    this.definitionModel.label = 'Are you currently working?';
     this.definitionModel.fieldSize = 'col-12';
+    this.definitionModel.options = [
+      { key: 'Y', displayName: 'Yes' },
+      { key: 'N', displayName: 'No' },
+    ];
     this.setLookupConfig();
   }
 

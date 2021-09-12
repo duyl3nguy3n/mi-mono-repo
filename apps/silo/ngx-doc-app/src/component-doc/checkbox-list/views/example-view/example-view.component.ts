@@ -9,9 +9,9 @@ import { LookupConfigModel } from '@silo/ngx';
 export class ExampleViewComponent implements OnInit {
   lookupConfig: LookupConfigModel = {
     lookups: [
-      { key: 'O1', displayName: 'Option 1' },
-      { key: 'O2', displayName: 'Option 2' },
-      { key: 'O3', displayName: 'Donec rutrum congue leo eget malesuada' },
+      { key: '1', displayName: 'Laptop' },
+      { key: '2', displayName: 'Phone' },
+      { key: '3', displayName: 'Tablet' },
     ],
   };
 

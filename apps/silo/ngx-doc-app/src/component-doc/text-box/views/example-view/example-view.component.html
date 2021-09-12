@@ -3,7 +3,7 @@
     <h2>Text box is not required</h2>
   </ng-container>
   <ng-container bodyContent>
-    <silo-text-box label="Label"></silo-text-box>
+    <silo-text-box label="Name"></silo-text-box>
   </ng-container>
 </silo-example-article>
 
@@ -12,7 +12,7 @@
     <h2>Text box is required</h2>
   </ng-container>
   <ng-container bodyContent>
-    <silo-text-box label="Label" [isRequired]="true"></silo-text-box>
+    <silo-text-box label="Name" [isRequired]="true"></silo-text-box>
   </ng-container>
 </silo-example-article>
 
@@ -22,7 +22,7 @@
   </ng-container>
   <ng-container bodyContent>
     <silo-text-box
-      label="Label"
+      label="Name"
       [isRequired]="true"
       [minLength]="3"
       [maxLength]="10"
@@ -36,9 +36,9 @@
   </ng-container>
   <ng-container bodyContent>
     <silo-text-box
-      label="Label"
+      label="Name"
       [isRequired]="true"
-      hint="Please fill out this field"
+      hint="Please enter your name"
     >
     </silo-text-box>
   </ng-container>
@@ -65,7 +65,7 @@
   </ng-container>
   <ng-container bodyContent>
     <silo-text-box
-      label="Label"
+      label="Name"
       defaultValue="Curabitur aliquet quam id dui posuere blandit."
       [isReadOnly]="true"
       [isRequired]="true"

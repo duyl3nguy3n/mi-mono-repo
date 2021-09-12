@@ -16,8 +16,15 @@ export class DefinitionModelViewComponent implements OnInit {
   lookupConfig = new LookupConfigModel();
 
   ngOnInit() {
-    this.definitionModel.label = 'Check all that apply to you';
+    this.definitionModel.label =
+      'Which of the following electronic devices do you own?';
+    this.definitionModel.hint = 'Check all that apply';
     this.definitionModel.fieldSize = 'col-12';
+    this.definitionModel.options = [
+      { key: '1', displayName: 'Laptop' },
+      { key: '2', displayName: 'Phone' },
+      { key: '3', displayName: 'Tablet' },
+    ];
     this.setLookupConfig();
   }
 

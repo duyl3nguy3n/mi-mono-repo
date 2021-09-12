@@ -14,7 +14,7 @@ export class DefinitionModelViewComponent implements OnInit {
   textDefinitionModel = new FormTextDefinitionModel();
 
   ngOnInit() {
-    this.textDefinitionModel.label = 'Describe work experience';
+    this.textDefinitionModel.label = 'Describe your work experiences';
     this.textDefinitionModel.placeholder =
       'Example: previous project, daily responsibility, etc.';
     this.textDefinitionModel.fieldSize = 'col-12';

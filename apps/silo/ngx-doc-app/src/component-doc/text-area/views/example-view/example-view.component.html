@@ -3,7 +3,10 @@
     <h2>Text area is not required</h2>
   </ng-container>
   <ng-container bodyContent>
-    <silo-text-area label="Label" fieldSize="col-6"></silo-text-area>
+    <silo-text-area
+      label="Describe your work experiences"
+      fieldSize="col-6"
+    ></silo-text-area>
   </ng-container>
 </silo-example-article>
 
@@ -13,7 +16,7 @@
   </ng-container>
   <ng-container bodyContent>
     <silo-text-area
-      label="Label"
+      label="Describe your work experiences"
       [isRequired]="true"
       fieldSize="col-6"
     ></silo-text-area>
@@ -26,7 +29,7 @@
   </ng-container>
   <ng-container bodyContent>
     <silo-text-area
-      label="Label"
+      label="Describe your work experiences"
       [isRequired]="true"
       [minLength]="3"
       [maxLength]="10"
@@ -41,9 +44,9 @@
   </ng-container>
   <ng-container bodyContent>
     <silo-text-area
-      label="Label"
+      label="Describe your work experiences"
       [isRequired]="true"
-      hint="Please fill out this field"
+      hint="Example: previous project, daily responsibility, etc."
       fieldSize="col-6"
     >
     </silo-text-area>
@@ -70,7 +73,7 @@
   </ng-container>
   <ng-container bodyContent>
     <silo-text-area
-      label="Label"
+      label="Describe your work experiences"
       defaultValue="Quisque velit nisi, pretium ut lacinia in, elementum id enim. Sed porttitor lectus nibh. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Pellentesque in ipsum id orci porta dapibus. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Pellentesque in ipsum id orci porta dapibus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla porttitor accumsan tincidunt."
       [isReadOnly]="true"
       [isRequired]="true"
