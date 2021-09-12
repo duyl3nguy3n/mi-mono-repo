@@ -5,12 +5,6 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run serve:silo-ngx-doc-app",
-    "serve:resume": "ng serve resume",
-    "build:resume": "ng build resume",
-    "postbuild:sw:resume": "webpack --config ./apps/resume/webpack-sw.dev.config.js --progress --colors && node ./apps/resume/workbox-build-inject.js",
-    "postbuild:sw:resume:prod": "webpack --config ./apps/resume/webpack-sw.prod.config.js --progress --colors && node ./apps/resume/workbox-build-inject.js",
-    "fb:serve:resume": "firebase serve --only hosting:resume-prod",
-    "fb:deploy:resume": "firebase deploy --only hosting:resume-prod",
     "serve:silo-ngx-doc-app": "ng serve silo-ngx-doc-app",
     "build:silo-ngx-doc-app": "ng build silo-ngx-doc-app",
     "build:silo-ngx-doc-app:prod": "ng build silo-ngx-doc-app --configuration production",

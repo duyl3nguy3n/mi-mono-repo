@@ -11,9 +11,6 @@
     "cms": {
       "tags": ["type:app", "scope:cms"]
     },
-    "resume": {
-      "tags": ["type:app", "scope:resume"]
-    },
     "silo-ngx-doc-app": {
       "tags": ["type:app", "scope:ngx-doc"]
     },
