@@ -61,9 +61,12 @@ export class SingleAutocompleteComponent
 
   clearFilterForm() {
     // if user didn't select an option then we should clear filter
-    if (!this.lookupFormControl.value) {
-      this.filterFormControl.setValue('');
-    }
+    // NOTE: schedule to do this next 0.1 sec where filter form control value has been updated with actual user value
+    setTimeout(() => {
+      if (typeof this.filterFormControl.value !== 'object') {
+        this.filterFormControl.setValue('');
+      }
+    }, 100);
   }
 
   clearForm($event: Event) {
