@@ -12,7 +12,8 @@ export function customMerge<TObject, TSource>(
   return mergeWith(
     (o, s) => {
       if (isArray(o)) {
-        return s ? [...s] : [];
+        // if there is a new source, replace it.
+        return s ? [...s] : undefined;
       }
     },
     object,
