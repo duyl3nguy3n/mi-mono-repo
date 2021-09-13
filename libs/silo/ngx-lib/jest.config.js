@@ -1,7 +1,7 @@
 module.exports = {
   displayName: 'silo-ngx-lib',
   preset: '../../../jest.preset.js',
-  setupFilesAfterEnv: ['../../../test-setup.ts'],
+  setupFilesAfterEnv: ['../../../jest-setup.ts'],
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
