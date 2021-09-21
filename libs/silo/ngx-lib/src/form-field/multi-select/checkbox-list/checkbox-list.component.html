@@ -22,12 +22,13 @@
         [formControl]="lookupListFormControl"
         [compareWith]="compareWith"
         [required]="isRequired"
+        [disabled]="isReadOnly"
       >
         <mat-list-option
           *ngFor="let option of options"
           checkboxPosition="before"
           [value]="option"
-          [disabled]="isReadOnly && !isSelected(option)"
+          [disabled]="isReadOnly"
         >
           {{ option.displayName }}
         </mat-list-option>

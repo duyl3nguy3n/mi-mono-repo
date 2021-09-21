@@ -108,7 +108,7 @@ $light-custom-theme: (
     success: $light-theme-success,
   ),
   foreground: (
-    base: black,
+    base: $dark-text,
     field-label: rgba(0, 0, 0, 0.54),
     field-icon: rgba(0, 0, 0, 0.8),
   ),
