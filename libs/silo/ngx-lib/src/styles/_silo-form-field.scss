@@ -12,6 +12,7 @@
   $readonly-bg: map.get($custom-theme, 'background', 'readonly');
   $field-icon-color: map.get($custom-theme, 'foreground', 'field-icon');
 
+  // outline
   .silo-form-field-outline-container {
     box-sizing: border-box;
     box-shadow: 0 0 0 1px gray;
@@ -23,6 +24,7 @@
     }
   }
 
+  // input container
   .silo-form-field-input-container {
     display: flex;
     align-items: center;
@@ -33,13 +35,14 @@
     min-height: 34px;
   }
 
-  // field icon color
+  // icon color inside input container
   .silo-form-field-input-container {
     .mat-icon {
       color: $field-icon-color;
     }
   }
 
+  // suffix container
   .silo-form-field-suffix-container {
     display: flex;
     place-content: center;
@@ -52,6 +55,7 @@
     }
   }
 
+  // hint
   .silo-form-field-message-container {
     .mat-hint {
       font-size: 75%;
