@@ -1,5 +1,5 @@
-@use 'sass:map';
 @use '~@angular/material' as mat;
+@use 'sass:map';
 
 @mixin silo-mat-form-field-override-color($config-or-theme, $custom-theme) {
   // Extract the color configuration in case a theme has been passed.

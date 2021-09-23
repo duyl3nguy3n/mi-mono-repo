@@ -1,10 +1,9 @@
-@use 'sass:map';
 @use '~@angular/material' as mat;
+@use 'sass:map';
 
 @mixin silo-mat-list-override-color($config-or-theme, $custom-theme) {
   // Extract the color configuration in case a theme has been passed.
   $color-config: mat.get-color-config($config-or-theme);
-  $primary-palette: map.get($color-config, 'primary');
   $foreground-base-color: map.get($custom-theme, 'foreground', 'base');
 
   .mat-selection-list {
@@ -12,7 +11,7 @@
     padding-top: 0 !important;
   }
 
-  // override disable color
+  // override disabled color for checked checkbox
   .mat-selection-list {
     .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-disabled {
       background: $foreground-base-color;

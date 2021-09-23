@@ -1,21 +1,41 @@
 @use '~@angular/material' as mat;
+@use 'sass:map';
 
-@mixin silo-mat-radio-group-override-color($config-or-theme) {
+@mixin silo-mat-radio-group-override-color($config-or-theme, $custom-theme) {
   // Extract the color configuration in case a theme has been passed.
-  $config: mat.get-color-config($config-or-theme);
+  $color-config: mat.get-color-config($config-or-theme);
+  $foreground-base-color: map.get($custom-theme, 'foreground', 'base');
 
-  .mat-radio-label-content {
-    white-space: break-spaces;
+  // allow label to wrap to next line
+  .mat-radio-group {
+    .mat-radio-label-content {
+      white-space: break-spaces;
+    }
+  }
+
+  // override disabled color for checked radio button
+  .mat-radio-group {
+    .mat-radio-button.mat-radio-checked.mat-radio-disabled {
+      .mat-radio-outer-circle {
+        border-color: $foreground-base-color;
+      }
+      .mat-radio-inner-circle {
+        background-color: $foreground-base-color;
+      }
+      .mat-radio-label-content {
+        color: $foreground-base-color;
+      }
+    }
   }
 }
 
-@mixin silo-mat-radio-group-override-theme($theme) {
+@mixin silo-mat-radio-group-override-theme($theme, $custom-theme) {
   // Extracts the color and typography configurations from the theme.
   $color: mat.get-color-config($theme);
 
   // Do not generate styles if configurations for individual theming
   // systems have been explicitly set to `null`.
   @if $color !=null {
-    @include silo-mat-radio-group-override-color($color);
+    @include silo-mat-radio-group-override-color($color, $custom-theme);
   }
 }

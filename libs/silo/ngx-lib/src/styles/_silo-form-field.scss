@@ -1,5 +1,5 @@
-@use 'sass:map';
 @use '~@angular/material' as mat;
+@use 'sass:map';
 
 @mixin silo-form-field-color($config-or-theme, $custom-theme) {
   // Extract the color configuration in case a theme has been passed.
@@ -8,6 +8,7 @@
   $warn-palette: map.get($color-config, 'warn');
   $highlight-palette: map.get($custom-theme, 'palette', 'highlight');
   $success-palette: map.get($custom-theme, 'palette', 'success');
+  $base-bg: map.get($custom-theme, 'background', 'base');
   $readonly-bg: map.get($custom-theme, 'background', 'readonly');
   $field-icon-color: map.get($custom-theme, 'foreground', 'field-icon');
 
@@ -59,10 +60,15 @@
     }
   }
 
-  // field is read-only
-  .silo-form-field--is-readonly {
+  // background color when editable vs. read-only
+  .silo-form-field {
     .silo-form-field-outline-container {
-      background-color: $readonly-bg;
+      background-color: $base-bg;
+    }
+    &--is-readonly {
+      .silo-form-field-outline-container {
+        background-color: $readonly-bg;
+      }
     }
   }
 

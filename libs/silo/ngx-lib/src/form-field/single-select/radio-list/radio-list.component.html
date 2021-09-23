@@ -19,16 +19,12 @@
       <mat-radio-group
         [attr.aria-labelledby]="labelId"
         [formControl]="lookupFormControl"
+        [disabled]="isReadOnly"
       >
         <mat-radio-button
           *ngFor="let option of options"
           [class.is-stacked]="isStacked"
           [value]="option"
-          [disabled]="
-            isReadOnly &&
-            lookupFormControl.value &&
-            lookupFormControl.value.key !== option.key
-          "
         >
           <span>{{ option.displayName }}</span>
         </mat-radio-button>

@@ -14,7 +14,7 @@
   @include silo-form-field-theme($theme, $custom-theme);
   @include silo-mat-form-field-override-theme($theme, $custom-theme);
   @include silo-mat-list-override-theme($theme, $custom-theme);
-  @include silo-mat-radio-group-override-theme($theme);
+  @include silo-mat-radio-group-override-theme($theme, $custom-theme);
   @include silo-mat-select-override-theme($theme);
   @include silo-form-builder-theme($theme);
   @include silo-label-theme($theme, $custom-theme);
