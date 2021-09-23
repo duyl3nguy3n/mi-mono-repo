@@ -5,6 +5,7 @@ export * from './fieldset/fieldset.public-api';
 export * from './form-builder/form-builder.public-api';
 export * from './form-field/boolean/boolean.public-api';
 export * from './form-field/form-field.public-api';
+export * from './interfaces/interfaces.public-api';
 export * from './layout/app-layout/app-layout.public-api';
 export * from './layout/router-tab-layout/router-tab-layout.public-api';
 export * from './layout/sticky-layout/sticky-layout.public-api';

@@ -7,6 +7,8 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AutoFocusDirective } from '../../directives/auto-focus/auto-focus.directive';
+import { Focusable } from '../../interfaces/focusable';
 import { ClassExpression } from '../../responsive/responsive-container/models/class-expression';
 import { newHtmlId } from '../../utils/new-html-id';
 import { LookupConfigModel } from '../models/lookup-config-model';
@@ -17,7 +19,8 @@ import { MultiSelectValidatorFactory } from './multi-select-validator.factory';
 @Component({
   template: '',
 })
-export abstract class MultiSelectFieldComponent implements OnInit, OnChanges {
+export abstract class MultiSelectFieldComponent
+  implements OnInit, OnChanges, Focusable {
   formGroup!: FormGroup;
 
   lookupListFormControl!: FormControl;
@@ -68,6 +71,10 @@ export abstract class MultiSelectFieldComponent implements OnInit, OnChanges {
     if (simpleChanges.lookupConfig && !simpleChanges.lookupConfig.firstChange) {
       this.setOptions();
     }
+  }
+
+  focus() {
+    AutoFocusDirective.focusFirstFocusable(this._elementRef);
   }
 
   setOptions() {

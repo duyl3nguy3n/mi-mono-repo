@@ -8,6 +8,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Focusable } from '../..';
+import { AutoFocusDirective } from '../../directives/auto-focus/auto-focus.directive';
 import { GetFormValue } from '../../form-builder/models/get-form-value';
 import { ClassExpression } from '../../responsive/responsive-container/models/class-expression';
 import { newHtmlId } from '../../utils/new-html-id';
@@ -18,7 +20,7 @@ import { TextValidatorFactory } from './text-validator.factory';
   template: '',
 })
 export abstract class TextFieldComponent
-  implements OnInit, AfterViewInit, GetFormValue {
+  implements OnInit, AfterViewInit, GetFormValue, Focusable {
   formGroup!: FormGroup;
 
   textFormControl!: FormControl;
@@ -82,6 +84,10 @@ export abstract class TextFieldComponent
     if (changes.defaultValue && !changes.defaultValue.isFirstChange()) {
       this.textFormControl.setValue(this.defaultValue);
     }
+  }
+
+  focus() {
+    AutoFocusDirective.focusFirstFocusable(this._elementRef);
   }
 
   setForm(value: string): void {
